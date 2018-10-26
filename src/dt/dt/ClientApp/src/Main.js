@@ -19,13 +19,33 @@ import {
   Badge
 } from "@material-ui/core";
 import Language from "./dictionary/Language";
+import { getData } from "./api/DtApi"; 
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: true
+      open: true,
+      data: [0]
     };
+  }
+
+  componentDidMount() {
+    getData()
+      .then(resp => {
+        this.setState({
+          data: resp.map(c => {
+            return {
+              userId: c.userId,
+              name: c.name,
+              surname: c.surname,
+              email: c.email,
+              dateOfBirth: c.dateOfBirth
+            };
+          })
+        });
+      })
+      .catch(er => console.error(er));
   }
 
   handleDrawerOpen = () => {
@@ -103,6 +123,8 @@ class Main extends Component {
               <div className={classes.appBarSpacer} />
               <Typography variant="h4" gutterBottom component="h2">
                 {/* Orders */}
+                {console.log(this.state.data[0].name)}
+                {this.state.data[0].name}              
               </Typography>
               <Typography component="div" className={classes.chartContainer} />
               <Typography variant="h4" gutterBottom component="h2">
