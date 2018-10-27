@@ -1,13 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using dt.storage.application.Interfaces;
+﻿using dt.storage.application.Interfaces;
 using dt.storage.application.Models;
-using System;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace dt.Controllers
 {
+    [Authorize]
     [Route("/dt/api/v1")]
     public class ApiController : Controller
     {

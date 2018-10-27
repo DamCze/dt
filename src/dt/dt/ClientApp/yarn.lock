@@ -5777,6 +5777,11 @@ jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
+keycloak-js@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/keycloak-js/-/keycloak-js-4.5.0.tgz#e910178d16c1a4663abcc40a8ed1e47f2835f4ed"
+  integrity sha512-50F1TtVzcxEuq99S3gNNIAS/n+BFTQIk+aJxoF3DtgFy4yDAJ+Sa0G62LFRU2A+MS6rL23T7t6p/yrgK4ktH+Q==
+
 keycode@^2.1.2, keycode@^2.1.9:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/keycode/-/keycode-2.2.0.tgz#3d0af56dc7b8b8e5cba8d0a97f107204eec22b04"

@@ -8,6 +8,8 @@ import DashboardIcon from "@material-ui/icons/Dashboard";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import RestaurantMenuIcon from "@material-ui/icons/RestaurantMenu";
 import BarChartIcon from "@material-ui/icons/BarChart";
+import { PowerSettingsNew } from "@material-ui/icons";
+import { keycloak } from "../index.js";
 import { BrowserRouter as Route, Link } from "react-router-dom";
 import { translate } from "react-i18next";
 
@@ -39,6 +41,12 @@ function MainListItems(props) {
           <BarChartIcon />
         </ListItemIcon>
         <ListItemText primary={t("report")} />
+      </ListItem>
+      <ListItem button onClick={keycloak.logout}>
+        <ListItemIcon>
+          <PowerSettingsNew />
+        </ListItemIcon >
+        <ListItemText primary={t("logout")} />
       </ListItem>
     </div>
   );

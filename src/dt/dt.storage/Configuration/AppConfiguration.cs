@@ -8,7 +8,8 @@ namespace dt.storage.application.Configuration
     {
         [JsonRequired]
         public DatabaseConfig PostgreSQL { get; set; }
-
+        [JsonRequired]
+        public KeyCloakConfig KeyCloak { get; set; }
         public AppConfiguration()
         {
             IConfigurationBuilder builder = new ConfigurationBuilder()

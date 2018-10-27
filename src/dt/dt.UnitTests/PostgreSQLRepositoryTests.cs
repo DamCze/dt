@@ -1,12 +1,11 @@
-using System;
-using System.Threading.Tasks;
-using Xunit;
 using dt.storage.application.Configuration;
 using dt.storage.application.Models;
-using dt.storage.application.Exceptions;
 using dt.storage.infrastructure.Context;
 using dt.storage.infrastructure.Repository;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace dt.UnitTests
 {

@@ -10,6 +10,7 @@ i18n.use(LanguageDetector).init({
         workout: "Workout",
         diet: "Diet",
         report: "Report",
+        logout: "Logout"
       }
     },
     pl: {
@@ -18,6 +19,7 @@ i18n.use(LanguageDetector).init({
         workout: "Trening",
         diet: "Dieta",
         report: "Raport",
+        logout: "Wyloguj"
       }
     }
   },
