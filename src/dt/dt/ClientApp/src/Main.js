@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import MainListItems from "./items/listItems";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Diet from "./diet/Diet";
 import {
   CssBaseline,
   Drawer,
@@ -19,33 +20,13 @@ import {
   Badge
 } from "@material-ui/core";
 import Language from "./dictionary/Language";
-import { getData } from "./api/DtApi"; 
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: true,
-      data: [0]
     };
-  }
-
-  componentDidMount() {
-    getData()
-      .then(resp => {
-        this.setState({
-          data: resp.map(c => {
-            return {
-              userId: c.userId,
-              name: c.name,
-              surname: c.surname,
-              email: c.email,
-              dateOfBirth: c.dateOfBirth
-            };
-          })
-        });
-      })
-      .catch(er => console.error(er));
   }
 
   handleDrawerOpen = () => {
@@ -123,8 +104,7 @@ class Main extends Component {
               <div className={classes.appBarSpacer} />
               <Typography variant="h4" gutterBottom component="h2">
                 {/* Orders */}
-                {console.log(this.state.data[0].name)}
-                {this.state.data[0].name}              
+                <Route path="/diet" component={Diet} />
               </Typography>
               <Typography component="div" className={classes.chartContainer} />
               <Typography variant="h4" gutterBottom component="h2">

@@ -17,31 +17,38 @@ function MainListItems(props) {
   const { t } = props;
   return (
     <div>
-      <ListItem button>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary={t("main_page")} />
-      </ListItem>
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <ListItem button>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary={t("main_page")} />
+        </ListItem>
+      </Link>
+
       <ListItem button>
         <ListItemIcon>
           <FitnessCenterIcon />
         </ListItemIcon>
         <ListItemText primary={t("workout")} />
       </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <RestaurantMenuIcon />
-        </ListItemIcon>
-        <ListItemText primary={t("diet")} />
-      </ListItem>
-
+      
+      <Link to="/diet" style={{ textDecoration: "none" }}>
+        <ListItem button>
+          <ListItemIcon>
+            <RestaurantMenuIcon />
+          </ListItemIcon>
+          <ListItemText primary={t("diet")} />
+        </ListItem>
+      </Link>
+      
       <ListItem button>
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
         <ListItemText primary={t("report")} />
       </ListItem>
+
       <ListItem button onClick={keycloak.logout}>
         <ListItemIcon>
           <PowerSettingsNew />

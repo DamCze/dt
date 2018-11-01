@@ -10,7 +10,13 @@ i18n.use(LanguageDetector).init({
         workout: "Workout",
         diet: "Diet",
         report: "Report",
-        logout: "Logout"
+        logout: "Logout",
+        breakfast: "Breakfast",
+        brunch: "Brunch",
+        dinner: "Dinner",
+        snack: "Snack",
+        supper: "Supper",
+        empty: "Empty"
       }
     },
     pl: {
@@ -19,7 +25,13 @@ i18n.use(LanguageDetector).init({
         workout: "Trening",
         diet: "Dieta",
         report: "Raport",
-        logout: "Wyloguj"
+        logout: "Wyloguj",
+        breakfast: "Śniadanie",
+        brunch: "Drugie śniadanie",
+        dinner: "Obiad",
+        snack: "Przekąska",
+        supper: "Kolacja",
+        empty: "Brak"
       }
     }
   },
