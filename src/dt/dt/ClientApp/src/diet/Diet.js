@@ -5,14 +5,34 @@ import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from "@material-ui/core/styles";
 import "../styles/DietStyles.css";
+import DietModal from "./DietModal";
 
 const styles = {
   button: {
-    marginLeft: "90%"
+    marginLeft: "90%",
   }
 };
 
 class Diet extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isVisible: false
+    };
+  }
+
+  openModal = () => {
+    this.setState({
+      isVisible: true,
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      isVisible: false
+    });
+  };
+
   render() {
     const { t } = this.props;
     return (
@@ -27,13 +47,15 @@ class Diet extends Component {
             t("supper")
           ].map(item => {
             return (
-              <AccordionItem title={item}>
+              <AccordionItem title={item} onClose={() => this.closeModal()}>
                 <div>{t("empty")}</div>
+                <DietModal isVisible={this.state.isVisible} closeModal={this.closeModal} />
                 <Button
                   variant="fab"
-                  color="primary"
+                  color="#3ca0eb"
                   aria-label="Add"
                   style={styles.button}
+                  onClick={() => this.openModal()}
                 >
                   <AddIcon />
                 </Button>
