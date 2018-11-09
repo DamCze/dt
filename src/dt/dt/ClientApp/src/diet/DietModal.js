@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
 import DietModalToggler from "./DietModalToggler";
+import DietPrepared from "./diet.mainContent/DietPrepared";
 
 Modal.setAppElement("#root");
 
@@ -15,6 +16,7 @@ const customStyles = {
     width: "50%",
     height: "40%",
     padding: "0",
+    overflow: "hidden",
   },
   overlay: {
     position: "fixed",
@@ -41,6 +43,7 @@ class DietModal extends Component {
         overlayClassName="Overlay"
       >
         <DietModalToggler />
+        <DietPrepared />
       </Modal>
     );
   }

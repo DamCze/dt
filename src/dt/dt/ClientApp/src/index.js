@@ -6,57 +6,66 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "./dictionary/i18n";
 import Keycloak from "keycloak-js";
 
-export function logout() {
-  const logoutOptions = { redirectUri: window.location.origin };
-  keycloak.logout(logoutOptions);
-}
+// export function logout() {
+//   const logoutOptions = { redirectUri: window.location.origin };
+//   keycloak.logout(logoutOptions);
+// }
 
-export function updateKeycloakToken() {
-  return keycloak.updateToken(120);
-}
+// export function updateKeycloakToken() {
+//   return keycloak.updateToken(120);
+// }
 
-function triggerLogout(timeout) {
-  setTimeout(keycloak.logout(), timeout);
-}
+// function triggerLogout(timeout) {
+//   setTimeout(keycloak.logout(), timeout);
+// }
 
-function getUserRole() {
-  if (keycloak) {
-    const clients = Object.values(keycloak.resourceAccess);
-    const roles = clients.map(o => o.roles.join());
-    return roles.find(r => r === "User" || r === "Admin");
-  }
-  return null;
-}
+// function getUserRole() {
+//   if (keycloak) {
+//     const clients = Object.values(keycloak.resourceAccess);
+//     const roles = clients.map(o => o.roles.join());
+//     return roles.find(r => r === "User" || r === "Admin");
+//   }
+//   return null;
+// }
 
-const View = () => {
-  let role = getUserRole();
-  switch (role || {}) {
-    case "User":
-      return <App />;
-    case "Admin":
-      return <div>Widok Admina</div>;
-    default:
-      triggerLogout(7000);
-      return <p>Nie jesteś przypisany do żadnej roli</p>;
-  }
-};
+// const View = () => {
+//   let role = getUserRole();
+//   switch (role || {}) {
+//     case "User":
+//       return <App />;
+//     case "Admin":
+//       return <div>Widok Admina</div>;
+//     default:
+//       triggerLogout(7000);
+//       return <p>Nie jesteś przypisany do żadnej roli</p>;
+//   }
+// };
 
 const baseUrl = document.getElementsByTagName("base")[0].getAttribute("href");
 const rootElement = document.getElementById("root");
-const keycloak = Keycloak("../../keycloak.json");
-keycloak.init({ onLoad: "login-required" }).success(authenticated => {
-  if (authenticated) {
+// const keycloak = Keycloak("../../keycloak.json");
+// keycloak.init({ onLoad: "login-required" }).success(authenticated => {
+//   if (authenticated) {
+//     ReactDOM.render(
+//       <BrowserRouter basename={baseUrl}>
+//         <I18nextProvider i18n={i18n}>
+//           <View />
+//         </I18nextProvider>
+//       </BrowserRouter>,
+//       rootElement
+//     );
+//   } else {
+//     logout();
+//   }
+// });
+
     ReactDOM.render(
       <BrowserRouter basename={baseUrl}>
         <I18nextProvider i18n={i18n}>
-          <View />
+          <App />
         </I18nextProvider>
       </BrowserRouter>,
       rootElement
     );
-  } else {
-    logout();
-  }
-});
 
-export { keycloak };
+// export { keycloak };

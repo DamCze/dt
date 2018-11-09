@@ -49,7 +49,8 @@ function MainListItems(props) {
         <ListItemText primary={t("report")} />
       </ListItem>
 
-      <ListItem button onClick={keycloak.logout}>
+      {/* <ListItem button onClick={keycloak.logout}> */}
+      <ListItem button onClick={console.log("keycloak.logout")}>
         <ListItemIcon>
           <PowerSettingsNew />
         </ListItemIcon >
