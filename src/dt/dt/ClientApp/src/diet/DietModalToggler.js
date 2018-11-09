@@ -24,7 +24,7 @@ class DietModalToggler extends Component {
     super(props);
 
     this.state = {
-      add: ""
+      choose: "mine"
     };
   }
 
@@ -38,15 +38,15 @@ class DietModalToggler extends Component {
       <FormControl className={classes.formControl}>
         <InputLabel>Dodaj</InputLabel>
         <Select
-          value={this.state.add}
+          value={this.state.choose}
           onChange={this.handleChange}
           inputProps={{
-            name: "add",
-            id: "add-simple"
+            name: "choose",
+            id: "choose-simple"
           }}
         >
-          <MenuItem value={10}>Szukaj</MenuItem>
-          <MenuItem value={20}>Własne</MenuItem>
+          <MenuItem value={"mine"}>Szukaj</MenuItem>
+          <MenuItem value={"yours"}>Własne</MenuItem>
         </Select>
       </FormControl>
     );

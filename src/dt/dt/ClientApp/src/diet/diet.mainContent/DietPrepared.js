@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import classNames from "classnames";
 import Select from "react-select";
 import { withStyles } from "@material-ui/core/styles";
+import { styles } from "./DietMainContentStyle";
+import { suggestions } from "./SampleData";
 import CancelIcon from "@material-ui/icons/Cancel";
 import {
   Typography,
@@ -11,7 +13,7 @@ import {
   Chip,
   MenuItem
 } from "@material-ui/core/";
-import { emphasize } from "@material-ui/core/styles/colorManipulator";
+import DietChip from "./DietChip";
 
 function NoOptionsMessage(props) {
   return (
@@ -39,8 +41,8 @@ function Control(props) {
           className: props.selectProps.classes.input,
           inputRef: props.innerRef,
           children: props.children,
-          ...props.innerProps,
-        },
+          ...props.innerProps
+        }
       }}
       {...props.selectProps.textFieldProps}
     />
@@ -54,7 +56,7 @@ function Option(props) {
       selected={props.isFocused}
       component="div"
       style={{
-        fontWeight: props.isSelected ? 500 : 400,
+        fontWeight: props.isSelected ? 500 : 400
       }}
       {...props.innerProps}
     >
@@ -76,7 +78,11 @@ function Placeholder(props) {
 }
 
 function ValueContainer(props) {
-  return <div className={props.selectProps.classes.valueContainer}>{props.children}</div>;
+  return (
+    <div className={props.selectProps.classes.valueContainer}>
+      {props.children}
+    </div>
+  );
 }
 
 function MultiValue(props) {
@@ -85,7 +91,7 @@ function MultiValue(props) {
       tabIndex={-1}
       label={props.children}
       className={classNames(props.selectProps.classes.chip, {
-        [props.selectProps.classes.chipFocused]: props.isFocused,
+        [props.selectProps.classes.chipFocused]: props.isFocused
       })}
       onDelete={props.removeProps.onClick}
       deleteIcon={<CancelIcon {...props.removeProps} />}
@@ -93,9 +99,24 @@ function MultiValue(props) {
   );
 }
 
+function SingleValue(props) {
+  return (
+    <Typography
+      className={props.selectProps.classes.singleValue}
+      {...props.innerProps}
+    >
+      {props.children}
+    </Typography>
+  );
+}
+
 function Menu(props) {
   return (
-    <Paper square className={props.selectProps.classes.paper} {...props.innerProps}>
+    <Paper
+      square
+      className={props.selectProps.classes.paper}
+      {...props.innerProps}
+    >
       {props.children}
     </Paper>
   );
@@ -108,18 +129,56 @@ const components = {
   NoOptionsMessage,
   Option,
   Placeholder,
-  ValueContainer,
+  SingleValue,
+  ValueContainer
 };
 
 class DietPrepared extends Component {
-  state = {
-    multi: null
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedOption: null,
+      chipArray: []
+    };
+
+    this.newArray = [];
+  }
+
+  handleChange = option => {
+    this.setState(
+      {
+        selectedOption: option
+      },
+      () => {
+        this.newArray.push(
+          <DietChip
+            getNameCallback={this.removeItems}
+            value={this.state.selectedOption.value}
+          />
+        );
+        console.log(this.newArray)
+        this.setState({
+          chipArray: this.newArray
+        });
+      }
+    );
   };
 
-  handleChange = name => value => {
-    this.setState({
-      [name]: value
-    });
+  removeItems = dataFromChild => {
+    let indexes = this.state.chipArray
+      .map((item, index) => {
+        if (item.props.value == dataFromChild) {
+          return index;
+        }
+      })
+      .filter(isFinite);
+
+      delete this.newArray[indexes];
+
+      this.setState({
+        chipArray: this.newArray
+      });
   };
 
   render() {
@@ -136,121 +195,36 @@ class DietPrepared extends Component {
     };
 
     return (
-      <div className={classes.root} style={{overflow: "hidden"}}>
+      <div className={classes.root} style={{ overflow: "hidden" }}>
         <NoSsr>
           <div className={classes.divider} />
           <div className={classes.rootDiv}>
             <Select
-              maxMenuHeight={120}
+              maxMenuHeight={140}
               classes={classes}
               styles={selectStyles}
-              textFieldProps={{
-                label: "Label",
-                InputLabelProps: {
-                  shrink: true
-                },
-              }}
               options={suggestions}
               components={components}
-              value={this.state.multi}
-              onChange={this.handleChange("multi")}
-              placeholder="Select multiple meals"
-              isMulti
+              value={this.state.selectedOption}
+              onChange={this.handleChange}
+              placeholder="Search a meal"
             />
           </div>
         </NoSsr>
+        <div className={classes.divider} />
+
+        {
+          <table>
+            <tr>
+              {this.state.chipArray.map((item, index) => (
+                <td key={index}>{item}</td>
+              ))}
+            </tr>
+          </table>
+        }
       </div>
     );
   }
 }
-
-const suggestions = [
-  { label: "Afghanistan" },
-  { label: "Aland Islands" },
-  { label: "Albania" },
-  { label: "Algeria" },
-  { label: "American Samoa" },
-  { label: "Andorra" },
-  { label: "Angola" },
-  { label: "Anguilla" },
-  { label: "Antarctica" },
-  { label: "Antigua and Barbuda" },
-  { label: "Argentina" },
-  { label: "Armenia" },
-  { label: "Aruba" },
-  { label: "Australia" },
-  { label: "Austria" },
-  { label: "Azerbaijan" },
-  { label: "Bahamas" },
-  { label: "Bahrain" },
-  { label: "Bangladesh" },
-  { label: "Barbados" },
-  { label: "Belarus" },
-  { label: "Belgium" },
-  { label: "Belize" },
-  { label: "Benin" },
-  { label: "Bermuda" },
-  { label: "Bhutan" },
-  { label: "Bolivia, Plurinational State of" },
-  { label: "Bonaire, Sint Eustatius and Saba" },
-  { label: "Bosnia and Herzegovina" },
-  { label: "Botswana" },
-  { label: "Bouvet Island" },
-  { label: "Brazil" },
-  { label: "British Indian Ocean Territory" },
-  { label: "Brunei Darussalam" }
-].map(suggestion => ({
-  value: suggestion.label,
-  label: suggestion.label
-}));
-
-const styles = theme => ({
-  rootDiv: {
-    overflow: "visible"
-  },
-  root: {
-    flexGrow: 1,
-    height: 250,
-  },
-  input: {
-    display: "flex",
-    padding: 0,
-  },
-  valueContainer: {
-    display: "flex",
-    flexWrap: "wrap",
-    flex: 1,
-    alignItems: "center",
-  },
-  chip: {
-    margin: `${theme.spacing.unit / 2}px ${theme.spacing.unit / 4}px`,
-  },
-  chipFocused: {
-    backgroundColor: emphasize(
-      theme.palette.type === "light"
-        ? theme.palette.grey[300]
-        : theme.palette.grey[700],
-      0.08
-    ),
-  },
-  noOptionsMessage: {
-    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
-  },
-  placeholder: {
-    position: "absolute",
-    left: 2,
-    fontSize: 16,
-  },
-  paper: {
-    position: "absolute",
-    zIndex: 1,
-    marginTop: theme.spacing.unit,
-    left: 0,
-    right: 0,
-  },
-  divider: {
-    height: theme.spacing.unit * 2,
-  }
-});
 
 export default withStyles(styles, { withTheme: true })(DietPrepared);
