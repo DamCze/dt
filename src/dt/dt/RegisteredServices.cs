@@ -21,29 +21,29 @@ namespace dt
             services.AddTransient<IDbRepository, DbRepository>();
             services.AddTransient<MyContext>();
 
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            }).AddJwtBearer(o =>
-            {
-                o.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateAudience = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidateIssuer = true,
-                    ValidIssuer = appConfiguration.KeyCloak.Issuer,
-                    ValidateLifetime = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfiguration.KeyCloak.IssuerSigningKey)),
-                };
+            //}).AddJwtBearer(o =>
+            //{
+            //    o.TokenValidationParameters = new TokenValidationParameters()
+            //    {
+            //        ValidateAudience = true,
+            //        ValidateIssuerSigningKey = true,
+            //        ValidateIssuer = true,
+            //        ValidIssuer = appConfiguration.KeyCloak.Issuer,
+            //        ValidateLifetime = true,
+            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfiguration.KeyCloak.IssuerSigningKey)),
+            //    };
 
-                o.RequireHttpsMetadata = false;
-                o.Authority = appConfiguration.KeyCloak.Issuer;
-                o.Audience = appConfiguration.KeyCloak.Client;
-                o.SaveToken = true;
+            //    o.RequireHttpsMetadata = false;
+            //    o.Authority = appConfiguration.KeyCloak.Issuer;
+            //    o.Audience = appConfiguration.KeyCloak.Client;
+            //    o.SaveToken = true;
 
-            });
+            //});
 
         }
     }

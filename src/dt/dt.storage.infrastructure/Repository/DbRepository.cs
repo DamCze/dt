@@ -20,7 +20,7 @@ namespace dt.storage.infrastructure.Repository
             _context = context;
         }
 
-        public async Task SaveAsync(User user)
+        public async Task SaveUserAsync(User user)
         {
             User result = await GetUserIdAsync(user.UserId);
 
@@ -38,15 +38,46 @@ namespace dt.storage.infrastructure.Repository
             return await _context.Users.Where(u => u.UserId == userId).AsQueryable().ToListAsync();
         }
 
-        public async Task<List<User>> GetAllAsync()
+        public async Task<List<User>> GetAllUsersAsync()
         {
             return await _context.Users.AsQueryable().ToListAsync();
         }
 
-        public async Task<User> GetUserIdAsync(Guid userId)
+        public async Task SaveMealAsync(Meal meal)
+        {
+            Meal result = await GetMealIdAsync(meal.MealId);
+
+            if(result != null)
+            {
+                throw new DuplicateKeyException(meal.MealId);
+            }
+
+            _context.Meals.Add(meal);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Meal>> GetMealByIdAsync(Guid mealId)
+        {
+            return await _context.Meals.Where(m => m.MealId == mealId).AsQueryable().ToListAsync();
+        }
+
+        public async Task<List<Meal>> GetAllMealsAsync()
+        {
+            return await _context.Meals.AsQueryable().ToListAsync();
+        }
+
+        #region Checking ID to save entities support
+        private async Task<User> GetUserIdAsync(Guid userId)
         {
             return await _context.Users.Where(u => u.UserId == userId).SingleOrDefaultAsync();
         }
+        
+
+        private async Task<Meal> GetMealIdAsync(Guid mealId)
+        {
+            return await _context.Meals.Where(m => m.MealId == mealId).SingleOrDefaultAsync();
+        }
+        #endregion
 
         #region Dispose support
         public void Dispose()

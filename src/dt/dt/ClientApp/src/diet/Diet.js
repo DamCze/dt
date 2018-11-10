@@ -52,7 +52,7 @@ class Diet extends Component {
                 <DietModal isVisible={this.state.isVisible} closeModal={this.closeModal} />
                 <Button
                   variant="fab"
-                  color="#3ca0eb"
+                  color="default"
                   aria-label="Add"
                   style={styles.button}
                   onClick={() => this.openModal()}

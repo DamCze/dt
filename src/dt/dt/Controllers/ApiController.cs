@@ -21,7 +21,7 @@ namespace dt.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllDataAsync()
         {
-            ICollection<User> result = await _dbRepository.GetAllAsync();
+            ICollection<Meal> result = await _dbRepository.GetAllMealsAsync();
             return Ok(result);
             //return new ObjectResult(await _dbRepository.GetAllAsync());
         }

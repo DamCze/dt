@@ -8,7 +8,10 @@ namespace dt.storage.application.Interfaces
     public interface IDbRepository
     {
         Task<List<User>> GetUserByIdAsync(Guid userId);
-        Task SaveAsync(User user);
-        Task<List<User>> GetAllAsync();
+        Task SaveUserAsync(User user);
+        Task<List<User>> GetAllUsersAsync();
+        Task<List<Meal>> GetMealByIdAsync(Guid mealId);
+        Task SaveMealAsync(Meal meal);
+        Task<List<Meal>> GetAllMealsAsync();
     }
 }

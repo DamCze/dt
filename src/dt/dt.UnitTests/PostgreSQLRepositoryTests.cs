@@ -43,7 +43,7 @@ namespace dt.UnitTests
             List<User> result = null;
 
             // act
-            await _repository.SaveAsync(user);
+            await _repository.SaveUserAsync(user);
             result = await _repository.GetUserByIdAsync(user.UserId);
 
             // assert
@@ -52,6 +52,26 @@ namespace dt.UnitTests
             Assert.Equal(user.Surname, result[0].Surname);
             Assert.Equal(user.Email, result[0].Email);
             Assert.Equal(user.DateOfBirth, result[0].DateOfBirth);
+        }
+
+        [Fact]
+        public async Task Should_Insert_And_Get_Meal()
+        {
+            // arrange 
+            Meal meal = new Meal(Guid.NewGuid(), "Rice", 130, 0.3, 2.7, 28);
+            List<Meal> result = null;
+
+            // act
+            await _repository.SaveMealAsync(meal);
+            result = await _repository.GetMealByIdAsync(meal.MealId);
+
+            // assert
+            Assert.Equal(meal.MealId, result[0].MealId);
+            Assert.Equal(meal.MealName, result[0].MealName);
+            Assert.Equal(meal.Kcal, result[0].Kcal);
+            Assert.Equal(meal.Protein, result[0].Protein);
+            Assert.Equal(meal.Fat, result[0].Fat);
+            Assert.Equal(meal.Carbo, result[0].Carbo);
         }
     }
 }

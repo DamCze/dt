@@ -14,6 +14,9 @@ import {
   MenuItem
 } from "@material-ui/core/";
 import DietChip from "./DietChip";
+import { getDietData } from "../../api/api.diet";
+
+const example = [{ label: "Afghanistan" }];
 
 function NoOptionsMessage(props) {
   return (
@@ -139,10 +142,35 @@ class DietPrepared extends Component {
 
     this.state = {
       selectedOption: null,
-      chipArray: []
+      chipArray: [],
+      mealObject: {
+        mealId: null,
+        mealName: null,
+        kcal: null,
+        fat: null,
+        protein: null,
+        carbo: null
+      }
     };
 
     this.newArray = [];
+  }
+
+  componentDidMount() {
+    getDietData().then(data => {
+      data.map(m => {
+        return this.setState({
+          mealObject: {
+            mealId: m.mealId,
+            mealName: m.mealName,
+            kcal: m.kcal,
+            fat: m.fat,
+            protein: m.protein,
+            carbo: m.carbo
+          }
+        });
+      });
+    });
   }
 
   handleChange = option => {
@@ -157,7 +185,7 @@ class DietPrepared extends Component {
             value={this.state.selectedOption.value}
           />
         );
-        console.log(this.newArray)
+        console.log(this.newArray);
         this.setState({
           chipArray: this.newArray
         });
@@ -174,11 +202,11 @@ class DietPrepared extends Component {
       })
       .filter(isFinite);
 
-      delete this.newArray[indexes];
+    delete this.newArray[indexes];
 
-      this.setState({
-        chipArray: this.newArray
-      });
+    this.setState({
+      chipArray: this.newArray
+    });
   };
 
   render() {
@@ -203,7 +231,7 @@ class DietPrepared extends Component {
               maxMenuHeight={140}
               classes={classes}
               styles={selectStyles}
-              options={suggestions}
+              options={example}
               components={components}
               value={this.state.selectedOption}
               onChange={this.handleChange}
