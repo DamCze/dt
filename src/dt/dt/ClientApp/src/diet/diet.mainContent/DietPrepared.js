@@ -230,9 +230,13 @@ class DietPrepared extends Component {
       })
       .filter(isFinite);
 
-    delete this.arrayDietChip[indexes];
-    delete this.arrayTableMeal[indexes];
+    // delete this.arrayDietChip[indexes];
+    // delete this.arrayTableMeal[indexes];
+    this.arrayDietChip.splice(indexes, 1);
+    this.arrayTableMeal.splice(indexes, 1);
 
+    console.log(this.arrayDietChip);
+    console.log(this.arrayTableMeal);
     this.setState({
       chipArray: this.arrayDietChip,
       tableArray: this.arrayTableMeal

@@ -8,6 +8,8 @@ import MainListItems from "./items/listItems";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Diet from "./diet/Diet";
+import Report from "./report/Report";
+import Workout from "./workout/Workout";
 import {
   CssBaseline,
   Drawer,
@@ -25,7 +27,7 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: true,
+      open: true
     };
   }
 
@@ -103,12 +105,12 @@ class Main extends Component {
             <main className={classes.content}>
               <div className={classes.appBarSpacer} />
               <Typography variant="h4" gutterBottom component="h2">
-                {/* Orders */}
                 <Route path="/diet" component={Diet} />
               </Typography>
               <Typography component="div" className={classes.chartContainer} />
               <Typography variant="h4" gutterBottom component="h2">
-                {/* Products */}
+                <Route path="/report" component={Report} />
+                <Route path="/workout" component={Workout} />
               </Typography>
               <div className={classes.tableContainer} />
             </main>

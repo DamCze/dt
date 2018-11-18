@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  ListItem,
-  ListItemIcon,
-  ListItemText
-} from "@material-ui/core";
+import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import RestaurantMenuIcon from "@material-ui/icons/RestaurantMenu";
@@ -26,13 +22,15 @@ function MainListItems(props) {
         </ListItem>
       </Link>
 
-      <ListItem button>
-        <ListItemIcon>
-          <FitnessCenterIcon />
-        </ListItemIcon>
-        <ListItemText primary={t("workout")} />
-      </ListItem>
-      
+      <Link to="/workout" style={{ textDecoration: "none" }}>
+        <ListItem button>
+          <ListItemIcon>
+            <FitnessCenterIcon />
+          </ListItemIcon>
+          <ListItemText primary={t("workout")} />
+        </ListItem>
+      </Link>
+
       <Link to="/diet" style={{ textDecoration: "none" }}>
         <ListItem button>
           <ListItemIcon>
@@ -41,19 +39,20 @@ function MainListItems(props) {
           <ListItemText primary={t("diet")} />
         </ListItem>
       </Link>
-      
-      <ListItem button>
-        <ListItemIcon>
-          <BarChartIcon />
-        </ListItemIcon>
-        <ListItemText primary={t("report")} />
-      </ListItem>
+      <Link to="/report" style={{ textDecoration: "none" }}>
+        <ListItem button>
+          <ListItemIcon>
+            <BarChartIcon />
+          </ListItemIcon>
+          <ListItemText primary={t("report")} />
+        </ListItem>
+      </Link>
 
       {/* <ListItem button onClick={keycloak.logout}> */}
       <ListItem button onClick={console.log("keycloak.logout")}>
         <ListItemIcon>
           <PowerSettingsNew />
-        </ListItemIcon >
+        </ListItemIcon>
         <ListItemText primary={t("logout")} />
       </ListItem>
     </div>

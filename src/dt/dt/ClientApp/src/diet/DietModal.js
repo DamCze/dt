@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Modal from "react-modal";
 import DietModalToggler from "./DietModalToggler";
 import DietPrepared from "./diet.mainContent/DietPrepared";
+import DoneIcon from "@material-ui/icons/Done";
+import Button from "@material-ui/core/Button";
 
 Modal.setAppElement("#root");
 
@@ -31,10 +33,8 @@ const customStyles = {
 const styles = {
   button: {
     position: "fixed",
-    // top: "0",
-    // left: "0",
-    right: "0",
-    bottom: "0"
+    right: "1%",
+    bottom: "1%"
   }
 };
 
@@ -72,7 +72,7 @@ class DietModal extends Component {
       this.setState(
         {
           isDisabled: true,
-          isVisible: false,
+          isVisible: false
         },
         () => {
           this.props.getDataToTable(this.state.dataFromModal);
@@ -91,13 +91,21 @@ class DietModal extends Component {
         overlayClassName="Overlay"
       >
         <DietModalToggler />
-        <button
+        {/* <button
           style={styles.button}
           disabled={this.state.isDisabled}
           onClick={this.saveOnClick}
         >
           Zapisz
-        </button>
+        </button> */}
+        <Button
+          color="primary"
+          disabled={this.state.isDisabled}
+          onClick={this.saveOnClick}
+          style={styles.button}
+        >
+          Dodaj
+        </Button>
 
         <DietPrepared getMealsCallback={this.callbackFromDietModal} />
       </Modal>

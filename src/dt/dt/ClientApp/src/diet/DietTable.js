@@ -33,6 +33,7 @@ class DietTable extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.dataToTable != this.props.dataToTable) {
+    this.arrayScalar.length = 0; 
       for (var i = 0, len = nextProps.dataToTable.length; i < len; i++) {
         this.arrayScalar[i] = {};
         for (var prop in nextProps.dataToTable[i]) {
@@ -97,7 +98,7 @@ class DietTable extends React.Component {
                     <TableCell component="th" scope="row">
                       {row.label}
                     </TableCell>
-                    <TableCell numeric>
+                    <TableCell>
                       <input
                         name={row.mealId}
                         type="number"
