@@ -23,7 +23,6 @@ namespace dt.Controllers
         {
             ICollection<Meal> result = await _dbRepository.GetAllMealsAsync();
             return Ok(result);
-            //return new ObjectResult(await _dbRepository.GetAllAsync());
         }
     }
 }

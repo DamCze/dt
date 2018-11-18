@@ -3,7 +3,7 @@ import classNames from "classnames";
 import Select from "react-select";
 import { withStyles } from "@material-ui/core/styles";
 import { styles } from "./DietMainContentStyle";
-import { suggestions } from "./SampleData";
+// import { suggestions } from "./SampleData";
 import CancelIcon from "@material-ui/icons/Cancel";
 import {
   Typography,
@@ -16,7 +16,24 @@ import {
 import DietChip from "./DietChip";
 import { getDietData } from "../../api/api.diet";
 
-const example = [{ label: "Afghanistan" }];
+const suggestions = [
+  {
+    mealId: "06524435-24df-4131-99d8-750e35ae65f2",
+    label: "Rice",
+    kcal: "130",
+    fat: "0.3",
+    protein: "2.7",
+    carbo: "28"
+  },
+  {
+    mealId: "06524435-24df-4131-99d8-750e35ae65f3",
+    label: "Makaron",
+    kcal: "131",
+    fat: "1.1",
+    protein: "5",
+    carbo: "25"
+  }
+];
 
 function NoOptionsMessage(props) {
   return (
@@ -143,33 +160,36 @@ class DietPrepared extends Component {
     this.state = {
       selectedOption: null,
       chipArray: [],
-      mealObject: {
-        mealId: null,
-        mealName: null,
-        kcal: null,
-        fat: null,
-        protein: null,
-        carbo: null
-      }
+      searchArray: [],
+      tableArray: []
     };
 
-    this.newArray = [];
+    this.arrayDietChip = [];
+    this.arraySearchMeal = [];
+    this.arrayTableMeal = [];
   }
 
   componentDidMount() {
-    getDietData().then(data => {
-      data.map(m => {
-        return this.setState({
-          mealObject: {
-            mealId: m.mealId,
-            mealName: m.mealName,
-            kcal: m.kcal,
-            fat: m.fat,
-            protein: m.protein,
-            carbo: m.carbo
-          }
-        });
-      });
+    // getDietData()
+    //   .then(data => {
+    //     data.map(m => {
+    //       return this.arraySearchMeal.push({
+    //         mealId: m.mealId,
+    //         label: m.mealName,
+    //         kcal: m.kcal,
+    //         fat: m.fat,
+    //         protein: m.protein,
+    //         carbo: m.carbo
+    //       });
+    //     });
+    //   })
+    //   .then(() => {
+    //     this.setState({
+    //       searchArray: this.arraySearchMeal
+    //     });
+    //   });
+    this.setState({
+      searchArray: suggestions
     });
   }
 
@@ -179,20 +199,28 @@ class DietPrepared extends Component {
         selectedOption: option
       },
       () => {
-        this.newArray.push(
+        this.arrayDietChip.push(
           <DietChip
             getNameCallback={this.removeItems}
-            value={this.state.selectedOption.value}
+            value={this.state.selectedOption.label}
           />
         );
-        console.log(this.newArray);
-        this.setState({
-          chipArray: this.newArray
-        });
+
+        this.arrayTableMeal.push(this.state.selectedOption);
+
+        this.setState(
+          {
+            chipArray: this.arrayDietChip,
+            tableArray: this.arrayTableMeal
+          },
+          () => {
+            return this.props.getMealsCallback(this.state.tableArray);
+          }
+        );
       }
     );
   };
-
+  //zamiast nazwa to id ?
   removeItems = dataFromChild => {
     let indexes = this.state.chipArray
       .map((item, index) => {
@@ -202,10 +230,12 @@ class DietPrepared extends Component {
       })
       .filter(isFinite);
 
-    delete this.newArray[indexes];
+    delete this.arrayDietChip[indexes];
+    delete this.arrayTableMeal[indexes];
 
     this.setState({
-      chipArray: this.newArray
+      chipArray: this.arrayDietChip,
+      tableArray: this.arrayTableMeal
     });
   };
 
@@ -231,7 +261,7 @@ class DietPrepared extends Component {
               maxMenuHeight={140}
               classes={classes}
               styles={selectStyles}
-              options={example}
+              options={this.state.searchArray}
               components={components}
               value={this.state.selectedOption}
               onChange={this.handleChange}
