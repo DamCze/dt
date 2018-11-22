@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Modal from "react-modal";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { saveDiet } from "../api/api.diet";
 
 Modal.setAppElement("#root");
 
@@ -57,6 +58,7 @@ class SaveModal extends Component {
       this.setState({
         isOpen: nextProps.isOpen
       });
+      console.log(this.props.dataToSave);
     }
   }
 
@@ -71,7 +73,7 @@ class SaveModal extends Component {
         overlayClassName="Overlay"
       >
         <p className={classes.p}>Are you sure?</p>
-        <Button color="primary" className={classes.button}>
+        <Button color="primary" className={classes.button} onClick={() => saveDiet(this.props.dataToSave)}>
           Save
         </Button>
       </Modal>

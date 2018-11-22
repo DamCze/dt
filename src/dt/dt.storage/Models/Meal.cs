@@ -7,16 +7,16 @@ namespace dt.storage.application.Models
     public class Meal
     {
         public Guid MealId { get; private set; }
-        public string MealName { get; private set; }
+        public string Label { get; private set; }
         public double Kcal { get; private set; }
         public double Fat { get; private set; }
         public double Protein { get; private set; }
         public double Carbo { get; private set; }
 
-        public Meal(Guid mealId, string mealName, double kcal, double fat, double protein, double carbo)
+        public Meal(Guid mealId, string label, double kcal, double fat, double protein, double carbo)
         {
-            MealId = mealId;
-            MealName = mealName;
+            MealId = Guid.NewGuid();
+            Label = label;
             Kcal = kcal;
             Fat = fat;
             Protein = protein;

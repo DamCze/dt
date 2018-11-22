@@ -24,5 +24,23 @@ namespace dt.Controllers
             ICollection<Meal> result = await _dbRepository.GetAllMealsAsync();
             return Ok(result);
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> PostDiet([FromBody] Meal meal)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(meal);
+        //    }
+            
+        //    await _dbRepository.SaveMealAsync(meal);
+        //    return Ok();
+        //}
+        [HttpPost]
+        public IActionResult PostString(string x)
+        {
+
+            return Ok();
+        }
     }
 }

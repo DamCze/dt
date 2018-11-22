@@ -33,7 +33,7 @@ class DietTable extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.dataToTable != this.props.dataToTable) {
-    this.arrayScalar.length = 0; 
+      this.arrayScalar.length = 0;
       for (var i = 0, len = nextProps.dataToTable.length; i < len; i++) {
         this.arrayScalar[i] = {};
         for (var prop in nextProps.dataToTable[i]) {
@@ -69,9 +69,14 @@ class DietTable extends React.Component {
       this.arrayScalar[indexes].protein *= e.target.value;
       this.arrayScalar[indexes].carbo *= e.target.value;
 
-      this.setState({
-        data: this.arrayScalar
-      });
+      this.setState(
+        {
+          data: this.arrayScalar
+        },
+        () => {
+          this.props.dataToSave(this.state.data);
+        }
+      );
     }
   };
 
@@ -105,10 +110,18 @@ class DietTable extends React.Component {
                         onChange={this.getScalarValue}
                       />
                     </TableCell>
-                    <TableCell numeric>{Math.round(row.kcal * 100) / 100}</TableCell>
-                    <TableCell numeric>{Math.round(row.fat * 100) / 100}</TableCell>
-                    <TableCell numeric>{Math.round(row.carbo * 100) / 100}</TableCell>
-                    <TableCell numeric>{Math.round(row.protein * 100) / 100}</TableCell>
+                    <TableCell numeric>
+                      {Math.round(row.kcal * 100) / 100}
+                    </TableCell>
+                    <TableCell numeric>
+                      {Math.round(row.fat * 100) / 100}
+                    </TableCell>
+                    <TableCell numeric>
+                      {Math.round(row.carbo * 100) / 100}
+                    </TableCell>
+                    <TableCell numeric>
+                      {Math.round(row.protein * 100) / 100}
+                    </TableCell>
                   </TableRow>
                 );
               })}

@@ -67,7 +67,7 @@ namespace dt.UnitTests
 
             // assert
             Assert.Equal(meal.MealId, result[0].MealId);
-            Assert.Equal(meal.MealName, result[0].MealName);
+            Assert.Equal(meal.Label, result[0].Label);
             Assert.Equal(meal.Kcal, result[0].Kcal);
             Assert.Equal(meal.Protein, result[0].Protein);
             Assert.Equal(meal.Fat, result[0].Fat);

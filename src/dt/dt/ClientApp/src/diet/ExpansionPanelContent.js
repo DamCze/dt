@@ -30,7 +30,8 @@ class ExpansionPanelContent extends Component {
     this.state = {
       isVisible: false,
       isSaveModalVisible: false,
-      dataFromExpansion: null
+      dataFromExpansion: null,
+      dataToSave: null
     };
   }
 
@@ -64,6 +65,12 @@ class ExpansionPanelContent extends Component {
     });
   };
 
+  callbackFromExpansion = dataFromChildren => {
+    this.setState({
+      dataToSave: dataFromChildren
+    })
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -76,8 +83,9 @@ class ExpansionPanelContent extends Component {
         <SaveModal 
           isOpen={this.state.isSaveModalVisible}
           closeModal={this.closeSaveModal}
+          dataToSave={this.state.dataToSave}
         />
-        <DietTable dataToTable={this.state.dataFromExpansion} />
+        <DietTable dataToSave={this.callbackFromExpansion} dataToTable={this.state.dataFromExpansion} />
         <div className={classes.divider} />
         <Button
           variant="fab"

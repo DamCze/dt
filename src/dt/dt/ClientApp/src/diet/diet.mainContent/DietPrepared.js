@@ -20,18 +20,18 @@ const suggestions = [
   {
     mealId: "06524435-24df-4131-99d8-750e35ae65f2",
     label: "Rice",
-    kcal: "130",
-    fat: "0.3",
-    protein: "2.7",
-    carbo: "28"
+    kcal: 130,
+    fat: 0.3,
+    protein: 2.7,
+    carbo: 28
   },
   {
     mealId: "06524435-24df-4131-99d8-750e35ae65f3",
     label: "Makaron",
-    kcal: "131",
-    fat: "1.1",
-    protein: "5",
-    carbo: "25"
+    kcal: 131,
+    fat: 1.1,
+    protein: 5,
+    carbo: 25
   }
 ];
 
@@ -235,8 +235,6 @@ class DietPrepared extends Component {
     this.arrayDietChip.splice(indexes, 1);
     this.arrayTableMeal.splice(indexes, 1);
 
-    console.log(this.arrayDietChip);
-    console.log(this.arrayTableMeal);
     this.setState({
       chipArray: this.arrayDietChip,
       tableArray: this.arrayTableMeal
