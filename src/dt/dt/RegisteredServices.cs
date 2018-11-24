@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace dt
 {
@@ -19,31 +20,34 @@ namespace dt
             services.AddSingleton(appConfiguration.KeyCloak);
             services.AddSingleton(appConfiguration.PostgreSQL);
             services.AddTransient<IDbRepository, DbRepository>();
+            services.AddTransient<IUsersMealsRepository, UsersMealsRepository>();
+            services.AddScoped<IUserContext, UserContext>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<MyContext>();
 
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            //}).AddJwtBearer(o =>
-            //{
-            //    o.TokenValidationParameters = new TokenValidationParameters()
-            //    {
-            //        ValidateAudience = true,
-            //        ValidateIssuerSigningKey = true,
-            //        ValidateIssuer = true,
-            //        ValidIssuer = appConfiguration.KeyCloak.Issuer,
-            //        ValidateLifetime = true,
-            //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfiguration.KeyCloak.IssuerSigningKey)),
-            //    };
+            }).AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidIssuer = appConfiguration.KeyCloak.Issuer,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfiguration.KeyCloak.IssuerSigningKey)),
+                };
 
-            //    o.RequireHttpsMetadata = false;
-            //    o.Authority = appConfiguration.KeyCloak.Issuer;
-            //    o.Audience = appConfiguration.KeyCloak.Client;
-            //    o.SaveToken = true;
+                o.RequireHttpsMetadata = false;
+                o.Authority = appConfiguration.KeyCloak.Issuer;
+                o.Audience = appConfiguration.KeyCloak.Client;
+                o.SaveToken = true;
 
-            //});
+            });
 
         }
     }

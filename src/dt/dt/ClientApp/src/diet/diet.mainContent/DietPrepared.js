@@ -14,7 +14,8 @@ import {
   MenuItem
 } from "@material-ui/core/";
 import DietChip from "./DietChip";
-import { getDietData } from "../../api/api.diet";
+// import { getDietData } from "../../api/api.diet";
+import { getData } from "../../api/DtApi";
 
 const suggestions = [
   {
@@ -170,27 +171,27 @@ class DietPrepared extends Component {
   }
 
   componentDidMount() {
-    // getDietData()
-    //   .then(data => {
-    //     data.map(m => {
-    //       return this.arraySearchMeal.push({
-    //         mealId: m.mealId,
-    //         label: m.mealName,
-    //         kcal: m.kcal,
-    //         fat: m.fat,
-    //         protein: m.protein,
-    //         carbo: m.carbo
-    //       });
-    //     });
-    //   })
-    //   .then(() => {
-    //     this.setState({
-    //       searchArray: this.arraySearchMeal
-    //     });
-    //   });
-    this.setState({
-      searchArray: suggestions
-    });
+    getData()
+      .then(data => {
+        data.map(m => {
+          return this.arraySearchMeal.push({
+            mealId: m.mealId,
+            label: m.label,
+            kcal: m.kcal,
+            fat: m.fat,
+            protein: m.protein,
+            carbo: m.carbo
+          });
+        });
+      })
+      .then(() => {
+        this.setState({
+          searchArray: this.arraySearchMeal
+        });
+      });
+    // this.setState({
+    //   searchArray: suggestions
+    // });
   }
 
   handleChange = option => {

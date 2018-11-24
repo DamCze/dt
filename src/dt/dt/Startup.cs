@@ -88,7 +88,7 @@ namespace dt
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

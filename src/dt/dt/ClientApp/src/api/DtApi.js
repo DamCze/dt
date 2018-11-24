@@ -1,7 +1,17 @@
-import { keycloak } from "../index.js";
+import { updateKeycloakToken, keycloak } from "../index.js";
 
 export async function getData() {
   const URI = "https://localhost:5001/dt/api/v1";
+  await updateKeycloakToken();
+  const response = await fetch(URI, buildFetchReqOpts());
+  if (response.ok) {
+    return await response.json();
+  } else throw `could not load data, server response: ${response.status}`;
+}
+
+export async function getId() {
+  const URI = "https://localhost:5001/dt/id/v1";
+  await updateKeycloakToken();
   const response = await fetch(URI, buildFetchReqOpts());
   if (response.ok) {
     return await response.json();

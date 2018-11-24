@@ -1,7 +1,9 @@
 ﻿using dt.storage.application.Interfaces;
 using dt.storage.application.Models;
+using dt.storage.infrastructure.Context;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,7 +15,7 @@ namespace dt.Controllers
     {
         private IDbRepository _dbRepository;
 
-        public ApiController(IDbRepository dbRepository)
+        public ApiController(IDbRepository dbRepository, IUserContext userContext)
         {
             _dbRepository = dbRepository;
         }
@@ -32,15 +34,16 @@ namespace dt.Controllers
         //    {
         //        return BadRequest(meal);
         //    }
-            
+
         //    await _dbRepository.SaveMealAsync(meal);
         //    return Ok();
         //}
-        [HttpPost]
-        public IActionResult PostString(string x)
-        {
+        //[HttpPost]
+        //[Route("/dt/api/v1")]
+        //public IActionResult PostString(string x)
+        //{
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
     }
 }

@@ -9,6 +9,8 @@ namespace dt.storage.infrastructure.Context
         private readonly string _connectionString;
         public DbSet<User> Users { get; set; }
         public DbSet<Meal> Meals { get; set; }
+        public DbSet<UsersMeal> UsersMeals { get; set; }
+
 
         public MyContext(DatabaseConfig databaseConfig)
         {
@@ -25,6 +27,7 @@ namespace dt.storage.infrastructure.Context
             modelBuilder.HasDefaultSchema("public");
             modelBuilder.Entity<User>().ToTable("user");
             modelBuilder.Entity<Meal>().ToTable("meal");
+            modelBuilder.Entity<UsersMeal>().ToTable("usersMeal");
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.2.2",
     "@material-ui/icons": "^3.0.1",
+    "axios": "^0.18.0",
     "bootstrap": "^3.3.7",
     "i18next": "^11.10.0",
     "i18next-browser-languagedetector": "^2.2.3",
