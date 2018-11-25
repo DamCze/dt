@@ -58,7 +58,7 @@ class SaveModal extends Component {
       this.setState({
         isOpen: nextProps.isOpen
       });
-      console.log(this.props.dataToSave);
+      console.log("save modal");
     }
   }
 
@@ -73,7 +73,7 @@ class SaveModal extends Component {
         overlayClassName="Overlay"
       >
         <p className={classes.p}>Are you sure?</p>
-        <Button color="primary" className={classes.button} onClick={() => saveDiet(this.props.dataToSave)}>
+        <Button color="primary" className={classes.button} onClick={() => saveDiet(this.props.dataToSave[0])}>
           Save
         </Button>
       </Modal>

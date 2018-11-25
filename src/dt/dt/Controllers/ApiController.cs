@@ -27,17 +27,17 @@ namespace dt.Controllers
             return Ok(result);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> PostDiet([FromBody] Meal meal)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(meal);
-        //    }
+        [HttpPost]
+        public async Task<IActionResult> PostDiet([FromBody] Meal meal)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(meal);
+            }
 
-        //    await _dbRepository.SaveMealAsync(meal);
-        //    return Ok();
-        //}
+            await _dbRepository.SaveMealAsync(meal);
+            return Ok();
+        }
         //[HttpPost]
         //[Route("/dt/api/v1")]
         //public IActionResult PostString(string x)

@@ -6,6 +6,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { getId } from "../api/DtApi";
 
 const styles = theme => ({
   root: {
@@ -24,11 +25,19 @@ class DietTable extends React.Component {
     super(props);
 
     this.state = {
-      data: null
+      data: null,
+      dataToSave: null
     };
 
     this.arrayScalar = [];
-    this.reset = [];
+    this.arrayToSave = [];
+    this.userId = null;
+  }
+
+  componentDidMount() {
+    Promise.resolve(getId()).then(result => {
+      this.userId = result;
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,6 +52,14 @@ class DietTable extends React.Component {
 
       this.setState({
         data: this.arrayScalar
+      });
+
+      this.arrayScalar.map(el => {
+        this.arrayToSave.push({
+          userId: this.userId,
+          mealId: el.mealId,
+          value: 1
+        });
       });
     }
   }
@@ -59,9 +76,12 @@ class DietTable extends React.Component {
         })
         .filter(isFinite);
 
+      // reseting array
       this.arrayScalar[indexes].kcal = this.props.dataToTable[indexes].kcal;
       this.arrayScalar[indexes].fat = this.props.dataToTable[indexes].fat;
-      this.arrayScalar[indexes].protein = this.props.dataToTable[indexes].protein;
+      this.arrayScalar[indexes].protein = this.props.dataToTable[
+        indexes
+      ].protein;
       this.arrayScalar[indexes].carbo = this.props.dataToTable[indexes].carbo;
 
       this.arrayScalar[indexes].kcal *= e.target.value;
@@ -69,12 +89,25 @@ class DietTable extends React.Component {
       this.arrayScalar[indexes].protein *= e.target.value;
       this.arrayScalar[indexes].carbo *= e.target.value;
 
+      this.arrayScalar.map((item, index) => {
+        if (item.mealId == name) {
+          this.arrayToSave[index] = {
+            userId: this.userId,
+            mealId: item.mealId,
+            value: parseFloat(e.target.value)
+          };
+        }
+      });
+
+      console.log(this.arrayToSave);
+
       this.setState(
         {
-          data: this.arrayScalar
+          data: this.arrayScalar,
+          dataToSave: this.dataToSave
         },
         () => {
-          this.props.dataToSave(this.state.data);
+          this.props.dataToSave(this.state.dataToSave);
         }
       );
     }
