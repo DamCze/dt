@@ -40,7 +40,7 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
     position: "relative",
-    top: "60%",
+    top: "60%"
   }
 });
 
@@ -49,7 +49,8 @@ class SaveModal extends Component {
     super(props);
 
     this.state = {
-      isOpen: this.props.isOpen
+      isOpen: this.props.isOpen,
+      dataToSave: this.props.dataToSave
     };
   }
 
@@ -59,8 +60,17 @@ class SaveModal extends Component {
         isOpen: nextProps.isOpen
       });
       console.log("save modal");
+      console.log(this.props.dataToSave);
     }
   }
+
+  // sendData = () => {
+  //   saveDiet(this.state.dataToSave).then(() => {
+  //     this.setState({
+  //       dataToSave: null
+  //     });
+  //   });
+  // };
 
   render() {
     const { classes } = this.props;
@@ -73,7 +83,17 @@ class SaveModal extends Component {
         overlayClassName="Overlay"
       >
         <p className={classes.p}>Are you sure?</p>
-        <Button color="primary" className={classes.button} onClick={() => saveDiet(this.props.dataToSave[0])}>
+        <Button
+          color="primary"
+          className={classes.button}
+          onClick={() => {
+            saveDiet(this.props.dataToSave).then(() => {
+              setTimeout(() => {
+                this.props.dataToSave.length = 0;
+              }, 3000);
+            });
+          }}
+        >
           Save
         </Button>
       </Modal>

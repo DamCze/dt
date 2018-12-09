@@ -14,10 +14,12 @@ namespace dt.Controllers
     public class ApiController : Controller
     {
         private IDbRepository _dbRepository;
+        private IUsersMealsRepository _usersMeals;
 
-        public ApiController(IDbRepository dbRepository, IUserContext userContext)
+        public ApiController(IDbRepository dbRepository, IUsersMealsRepository repo)
         {
             _dbRepository = dbRepository;
+            _usersMeals = repo;
         }
 
         [HttpGet]
@@ -27,15 +29,26 @@ namespace dt.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetPlotData(Guid userId)
+        {
+            ICollection<PlotData> result = await _usersMeals.GetUsersMealAsync(userId);
+            return Ok(result);
+        }
+
         [HttpPost]
-        public async Task<IActionResult> PostDiet([FromBody] Meal meal)
+        public async Task<IActionResult> PostDiet([FromBody] UsersMeal[] usersMeal)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(meal);
+                return BadRequest(usersMeal);
             }
 
-            await _dbRepository.SaveMealAsync(meal);
+            foreach(var i in usersMeal)
+            {
+                await _usersMeals.SaveAsync(i);
+            }
+
             return Ok();
         }
         //[HttpPost]

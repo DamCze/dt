@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace dt.UnitTests
+namespace dt.UnitRepoTests
 {
-    public class UsersMealRepositoryTest
+    public class UsersMealRepositoryTests
     {
         private UsersMealsRepository _repository;
         private MyContext _context;
         private AppConfiguration _appConfiguration;
 
         #region Initialization
-        public UsersMealRepositoryTest()
+        public UsersMealRepositoryTests()
         {
             _appConfiguration = new AppConfiguration();
             _context = new MyContext(_appConfiguration.PostgreSQL);
@@ -34,11 +34,10 @@ namespace dt.UnitTests
         }
         #endregion
 
-        [Fact]
         public async Task Should_Insert_And_Get_Data()
         {
             // arrange
-            UsersMeal usersMeal = new UsersMeal(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
+            UsersMeal usersMeal = new UsersMeal(Guid.NewGuid(), Guid.NewGuid(), 1);
             List<UsersMeal> result = null;
 
             // act
@@ -49,6 +48,7 @@ namespace dt.UnitTests
             Assert.Equal(usersMeal.MealId, result[0].MealId);
             Assert.Equal(usersMeal.UserId, result[0].UserId);
             Assert.Equal(usersMeal.UsersMealId, result[0].UsersMealId);
+            Assert.Equal(usersMeal.Value, result[0].Value);
         }
     }
 }

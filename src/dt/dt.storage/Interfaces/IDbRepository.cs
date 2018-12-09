@@ -13,5 +13,6 @@ namespace dt.storage.application.Interfaces
         Task<List<Meal>> GetMealByIdAsync(Guid mealId);
         Task SaveMealAsync(Meal meal);
         Task<List<Meal>> GetAllMealsAsync();
+        void SaveMeals(List<List<string>> arr);
     }
 }

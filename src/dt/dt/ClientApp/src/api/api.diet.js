@@ -1,9 +1,9 @@
-import { updateKeycloakToken, keycloak } from "../index.js";
+// import { updateKeycloakToken, keycloak } from "../index.js";
 import axios from "axios";
 
 export async function getDietData() {
   const URI = "https://localhost:5001/dt/api/v1";
-  await updateKeycloakToken();
+  // await updateKeycloakToken();
   const response = await fetch(URI);
   if (response.ok) {
     return await response.json();
@@ -16,7 +16,7 @@ export async function saveDiet(diet) {
   const URI = `https://localhost:5001/dt/api/v1`;
   let myHeaders = new Headers();
   myHeaders.set("Content-Type", "application/json");
-  myHeaders.set("Authorization", "Bearer " + keycloak.token);
+  // myHeaders.set("Authorization", "Bearer " + keycloak.token);
   myHeaders.set("Content-Type", "application/x-www-form-urlencoded");
 
   axios.post(URI, diet, { headers: myHeaders})
@@ -29,7 +29,7 @@ export async function saveDiet(diet) {
 export async function buildFetchReqOpts(data) {
   let myHeaders = new Headers();
   myHeaders.set("Content-Type", "application/json");
-  myHeaders.set("Authorization", "Bearer " + keycloak.token);
+  // myHeaders.set("Authorization", "Bearer " + keycloak.token);
   let requestOptions = {
     method: "POST",
     headers: myHeaders,

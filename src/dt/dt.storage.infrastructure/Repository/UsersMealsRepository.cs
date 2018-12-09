@@ -30,13 +30,14 @@ namespace dt.storage.infrastructure.Repository
             return await _context.UsersMeals.Where(uM => uM.UsersMealId == id).AsQueryable().ToListAsync();
         }
 
-        public async Task<List<Meal>> GetUsersMealAsync(Guid userId)
+        public async Task<List<PlotData>> GetUsersMealAsync(Guid userId)
         {
             return await (from m in _context.Meals
                           join uM in _context.UsersMeals
                           on m.MealId equals uM.MealId
                           where uM.UserId == userId
-                          select new Meal(m.MealId, m.Label, m.Kcal, m.Fat, m.Protein, m.Carbo)
+                          //select new Meal(m.MealId, m.Label, m.Kcal, m.Fat, m.Protein, m.Carbo) 
+                          select new PlotData(uM.Value * m.Kcal, uM.Value * m.Fat, uM.Value * m.Protein, uM.Value * m.Carbo, uM.EntityCreation)
                           ).ToListAsync();
         }
 

@@ -1,21 +1,17 @@
 // import { updateKeycloakToken, keycloak } from "../index.js";
+import { getId } from "./DtApi";
+import axios from "axios";
 
-export async function getData() {
-  const URI = "https://localhost:5001/dt/api/v1";
+export async function getPlotData() {
+  let userId = await getId();
+  const URI = "https://localhost:5001/dt/api/v1/" + userId;
   // await updateKeycloakToken();
+
   const response = await fetch(URI, buildFetchReqOpts());
-  if (response.ok) {
+  if(response.ok) {
     return await response.json();
   } else throw `could not load data, server response: ${response.status}`;
-}
 
-export async function getId() {
-  const URI = "https://localhost:5001/dt/id/v1";
-  // await updateKeycloakToken();
-  const response = await fetch(URI, buildFetchReqOpts());
-  if (response.ok) {
-    return await response.json();
-  } else throw `could not load data, server response: ${response.status}`;
 }
 
 function buildFetchReqOpts() {

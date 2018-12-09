@@ -10,12 +10,18 @@ using Microsoft.IdentityModel.Tokens;
 using dt.storage.application.Configuration;
 using System.Text;
 using dt.storage.infrastructure.Context;
+using System;
+using dt.Scraper;
 
 namespace dt
 {
     public class Startup
     {
         public AppConfiguration AppConfiguration { get; set; }
+        Uri uriAtoH = new Uri("https://polki.pl/dieta-i-fitness/odchudzanie,tabela-kalorii-i-wartosci-odzywczych-produkty-a-h,10299029,artykul.html");
+        Uri uriItoO = new Uri("https://polki.pl/dieta-i-fitness/odchudzanie,tabela-kalorii-i-wartosci-odzywczych-produkty-i-o,10299033,artykul.html");
+        Uri uriPtoZ = new Uri("https://polki.pl/dieta-i-fitness/odchudzanie,tabela-kalorii-i-wartosci-odzywczych-produkty-p-z,10299037,artykul.html");
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,7 +31,20 @@ namespace dt
         {
             using (var client = new MyContext(AppConfiguration.PostgreSQL))
             {
-                client.Database.EnsureCreated();
+                if(client.Database.EnsureCreated())
+                {
+                    ScrapData scrapDataAtoH = new ScrapData(uriAtoH);
+                    ScrapData scrapDataItoO = new ScrapData(uriItoO);
+                    ScrapData scrapDataPtoZ = new ScrapData(uriPtoZ);
+
+                    scrapDataAtoH.saveScrapedData(scrapDataAtoH.getData());
+                    Console.WriteLine("AtoH inserted");
+                    scrapDataItoO.saveScrapedData(scrapDataItoO.getData());
+                    Console.WriteLine("ItoO inserted");
+                    scrapDataPtoZ.saveScrapedData(scrapDataPtoZ.getData());
+                    Console.WriteLine("PtoZ inserted");
+                    Console.WriteLine("All data inserted");
+                }
             }
         }
 

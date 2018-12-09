@@ -66,6 +66,22 @@ namespace dt.storage.infrastructure.Repository
             return await _context.Meals.AsQueryable().ToListAsync();
         }
 
+        public void SaveMeals(List<List<string>> arr)
+        {
+            foreach (var i in arr)
+            {
+                for (var j = 0; j < i.Count; j++)
+                {
+                    if (i[j].Length == 0)
+                    {
+                        i[j] = "0";
+                    }
+                }
+
+                _context.Meals.Add(new Meal(Guid.NewGuid(), i[0], double.Parse(i[1]), double.Parse(i[2]), double.Parse(i[3]), double.Parse(i[4])));
+                _context.SaveChanges();
+            }
+
         #region Checking ID to save entities support
         private async Task<User> GetUserIdAsync(Guid userId)
         {

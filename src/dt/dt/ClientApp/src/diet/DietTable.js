@@ -99,12 +99,12 @@ class DietTable extends React.Component {
         }
       });
 
-      console.log(this.arrayToSave);
+      // console.log(this.arrayToSave);
 
       this.setState(
         {
           data: this.arrayScalar,
-          dataToSave: this.dataToSave
+          dataToSave: this.arrayToSave
         },
         () => {
           this.props.dataToSave(this.state.dataToSave);

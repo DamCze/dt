@@ -4,23 +4,22 @@ using System.Text;
 
 namespace dt.storage.application.Models
 {
-    public class Meal
+    public class PlotData
     {
-        public Guid MealId { get; private set; }
-        public string Label { get; private set; }
         public double Kcal { get; private set; }
         public double Fat { get; private set; }
         public double Protein { get; private set; }
         public double Carbo { get; private set; }
+        public DateTime EntityCreation { get; private set; }
 
-        public Meal(Guid mealId, string label, double kcal, double fat, double protein, double carbo)
+        public PlotData(double kcal, double fat, double protein, double carbo, DateTime entityCreation)
         {
-            MealId = mealId;
-            Label = label;
             Kcal = kcal;
             Fat = fat;
             Protein = protein;
             Carbo = carbo;
+            EntityCreation = entityCreation;
         }
+
     }
 }

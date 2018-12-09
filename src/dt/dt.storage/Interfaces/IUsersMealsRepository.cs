@@ -9,7 +9,7 @@ namespace dt.storage.application.Interfaces
     public interface IUsersMealsRepository
     {
         Task SaveAsync(UsersMeal usersMeal);
-        Task<List<Meal>> GetUsersMealAsync(Guid userId);
+        Task<List<PlotData>> GetUsersMealAsync(Guid userId);
         Task<List<UsersMeal>> GetById(Guid id);
     }
 }
