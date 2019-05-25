@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { RadialBarChart, RadialBar, Legend } from "recharts";
 import { mock } from "../model/mock";
+import { getPlotData } from "../api/api.report";
 import moment from "moment";
 
 // const data = [
@@ -25,14 +26,14 @@ class PlotCircle extends Component {
 
     this.state = {
       data: [0]
-    }
+    };
 
     this._data = [
-      {name: "kcal", value: 0, fill: "#8884d8"},
-      {name: "fat", value: 0, fill: "#83a6ed"},
-      {name: "protein", value: 0, fill: "#8dd1e1"},
-      {name: "carbo", value: 0, fill: "#82ca9d"}
-    ]
+      { name: "kcal", value: 0, fill: "#8884d8" },
+      { name: "fat", value: 0, fill: "#83a6ed" },
+      { name: "protein", value: 0, fill: "#8dd1e1" },
+      { name: "carbo", value: 0, fill: "#82ca9d" }
+    ];
   }
 
   componentDidMount() {
@@ -42,10 +43,23 @@ class PlotCircle extends Component {
       this._data[2].value += mock[i].protein;
       this._data[3].value += mock[i].carbo;
     }
-    
+
     this.setState({
       data: this._data
     })
+
+    // getPlotData()
+    //   .then(data => {
+    //     for (var i = 0; i < data.length; i++) {
+    //       this._data[0].value += data[i].kcal;
+    //       this._data[1].value += data[i].fat;
+    //       this._data[2].value += data[i].protein;
+    //       this._data[3].value += data[i].carbo;
+    //     }
+    //   })
+    //   .then(() => {
+    //     this.setState({ data: this._data });
+    //   });
   }
 
   render() {

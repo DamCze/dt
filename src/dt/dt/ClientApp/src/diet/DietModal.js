@@ -7,47 +7,12 @@ import Button from "@material-ui/core/Button";
 
 Modal.setAppElement("#root");
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "50%",
-    height: "40%",
-    padding: "0",
-    overflow: "hidden"
-  },
-  overlay: {
-    position: "fixed",
-    top: "0",
-    left: "0",
-    right: "0",
-    bottom: "0",
-    background: "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))"
-  }
-};
-
-const styles = {
-  button: {
-    position: "fixed",
-    right: "1%",
-    bottom: "1%"
-  }
-};
-
 class DietModal extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      dataFromModal: null,
-      isDisabled: true,
-      isVisible: this.props.isVisible
-    };
-  }
+  state = {
+    dataFromModal: null,
+    isDisabled: true,
+    isVisible: this.props.isVisible
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isVisible != this.state.isVisible) {
@@ -62,12 +27,9 @@ class DietModal extends Component {
       dataFromModal: dataFromChild,
       isDisabled: false
     });
-
-    console.log(dataFromChild);
   };
 
   saveOnClick = () => {
-    //this.setState({true})
     if (!this.state.isDisabled) {
       this.setState(
         {
@@ -91,13 +53,6 @@ class DietModal extends Component {
         overlayClassName="Overlay"
       >
         <DietModalToggler />
-        {/* <button
-          style={styles.button}
-          disabled={this.state.isDisabled}
-          onClick={this.saveOnClick}
-        >
-          Zapisz
-        </button> */}
         <Button
           color="primary"
           disabled={this.state.isDisabled}
@@ -112,5 +67,36 @@ class DietModal extends Component {
     );
   }
 }
+
+const styles = {
+  button: {
+    position: "fixed",
+    right: "1%",
+    bottom: "1%"
+  }
+};
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "50%",
+    height: "40%",
+    padding: "0",
+    overflow: "hidden"
+  },
+  overlay: {
+    position: "fixed",
+    top: "0",
+    left: "0",
+    right: "0",
+    bottom: "0",
+    background: "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3))"
+  }
+};
 
 export default DietModal;

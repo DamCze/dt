@@ -1,8 +1,8 @@
-// import { updateKeycloakToken, keycloak } from "../index.js";
+import { updateKeycloakToken, keycloak } from "../index.js";
 
 export async function getData() {
   const URI = "https://localhost:5001/dt/api/v1";
-  // await updateKeycloakToken();
+  await updateKeycloakToken();
   const response = await fetch(URI, buildFetchReqOpts());
   if (response.ok) {
     return await response.json();
@@ -11,7 +11,7 @@ export async function getData() {
 
 export async function getId() {
   const URI = "https://localhost:5001/dt/id/v1";
-  // await updateKeycloakToken();
+  await updateKeycloakToken();
   const response = await fetch(URI, buildFetchReqOpts());
   if (response.ok) {
     return await response.json();
@@ -20,7 +20,7 @@ export async function getId() {
 
 function buildFetchReqOpts() {
   let myHeaders = new Headers();
-  // myHeaders.set("Authorization", "Bearer " + keycloak.token);
+  myHeaders.set("Authorization", "Bearer " + keycloak.token);
   myHeaders.set("Content-Type", "application/x-www-form-urlencoded");
   myHeaders.set("Accept", "application/json");
   let requestOptions = {

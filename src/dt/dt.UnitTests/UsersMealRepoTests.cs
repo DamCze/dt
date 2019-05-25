@@ -10,7 +10,7 @@ using Xunit;
 
 namespace dt.UnitTests
 {
-    public class UsersMealRepoTests
+    public class UsersMealRepoTests : IDisposable
     {
         private UsersMealsRepository _repository;
         private MyContext _context;
@@ -34,6 +34,7 @@ namespace dt.UnitTests
         }
         #endregion
 
+        [Fact]
         public async Task Should_Insert_And_Get_Data()
         {
             // arrange

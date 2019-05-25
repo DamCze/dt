@@ -5,6 +5,8 @@ import React, { Component } from "react";
 import { ReactAgenda, ReactAgendaCtrl, guid, Modal } from "react-agenda";
 import moment from "moment";
 
+import { saveWorkout } from "../api/api.workout";
+
 var now = new Date();
 
 require("moment/locale/pl.js");
@@ -15,7 +17,7 @@ var colors = {
   "color-4": "rgba(70, 159, 213, 1)",
   "color-5": "rgba(170, 59, 123, 1)"
 };
-
+/*
 var items = [
   {
     _id: guid(),
@@ -131,6 +133,9 @@ var items = [
     classes: "color-3"
   }
 ];
+*/
+
+const items = [0];
 
 export default class Agenda extends Component {
   constructor(props) {
@@ -141,7 +146,7 @@ export default class Agenda extends Component {
       selected: [],
       cellHeight: 60 / 4,
       showModal: false,
-      locale: "fr",
+      locale: "pl",
       rowsPerHour: 4,
       numberOfDays: 4,
       startDate: new Date()
@@ -224,6 +229,8 @@ export default class Agenda extends Component {
 
   addNewEvent(items, newItems) {
     this.setState({ showModal: false, selected: [], items: items });
+    console.log(newItems);
+    // saveWorkout(newItems);
     this._closeModal();
   }
   editEvent(items, item) {
@@ -237,7 +244,6 @@ export default class Agenda extends Component {
 
   render() {
     var AgendaItem = function(props) {
-      console.log(" item component props", props);
       return (
         <div
           style={{ display: "block", position: "absolute", background: "#FFF" }}

@@ -33,17 +33,17 @@ namespace dt
             {
                 if(client.Database.EnsureCreated())
                 {
-                    ScrapData scrapDataAtoH = new ScrapData(uriAtoH);
-                    ScrapData scrapDataItoO = new ScrapData(uriItoO);
-                    ScrapData scrapDataPtoZ = new ScrapData(uriPtoZ);
+                    //ScrapData scrapDataAtoH = new ScrapData(uriAtoH);
+                    //ScrapData scrapDataItoO = new ScrapData(uriItoO);
+                    //ScrapData scrapDataPtoZ = new ScrapData(uriPtoZ);
 
-                    scrapDataAtoH.saveScrapedData(scrapDataAtoH.getData());
-                    Console.WriteLine("AtoH inserted");
-                    scrapDataItoO.saveScrapedData(scrapDataItoO.getData());
-                    Console.WriteLine("ItoO inserted");
-                    scrapDataPtoZ.saveScrapedData(scrapDataPtoZ.getData());
-                    Console.WriteLine("PtoZ inserted");
-                    Console.WriteLine("All data inserted");
+                    //scrapDataAtoH.saveScrapedData(scrapDataAtoH.getData());
+                    //Console.WriteLine("AtoH inserted");
+                    //scrapDataItoO.saveScrapedData(scrapDataItoO.getData());
+                    //Console.WriteLine("ItoO inserted");
+                    //scrapDataPtoZ.saveScrapedData(scrapDataPtoZ.getData());
+                    //Console.WriteLine("PtoZ inserted");
+                    //Console.WriteLine("All data inserted");
                 }
             }
         }
@@ -63,32 +63,32 @@ namespace dt
             });
         }
 
-        //public void RegisterJWTBearer(IServiceCollection services)
-        //{
-        //    services.AddAuthentication(options =>
-        //    {
-        //        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        //        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        public void RegisterJWTBearer(IServiceCollection services)
+        {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-        //    }).AddJwtBearer(o =>
-        //    {
-        //        o.TokenValidationParameters = new TokenValidationParameters()
-        //        {
-        //            ValidateAudience = true,
-        //            ValidateIssuerSigningKey = true,
-        //            ValidateIssuer = true,
-        //            ValidIssuer = AppConfiguration.KeyCloak.Issuer,
-        //            ValidateLifetime = true,
-        //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.KeyCloak.IssuerSigningKey)),
-        //        };
+            }).AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = true,
+                    ValidIssuer = AppConfiguration.KeyCloak.Issuer,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppConfiguration.KeyCloak.IssuerSigningKey)),
+                };
 
-        //        o.RequireHttpsMetadata = false;
-        //        o.Authority = AppConfiguration.KeyCloak.Issuer;
-        //        o.Audience = AppConfiguration.KeyCloak.Client;
-        //        o.SaveToken = true;
+                o.RequireHttpsMetadata = false;
+                o.Authority = AppConfiguration.KeyCloak.Issuer;
+                o.Audience = AppConfiguration.KeyCloak.Client;
+                o.SaveToken = true;
 
-        //    });
-        //}
+            });
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

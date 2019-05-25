@@ -13,6 +13,7 @@ namespace dt.UnitTests
     {
         private DbRepository _repository;
         private UsersMealsRepository _secRepository;
+        private WorkoutRepository _workoutRepository;
         private MyContext _context;
         private AppConfiguration _appConfiguration;
 
@@ -23,6 +24,7 @@ namespace dt.UnitTests
             _context = new MyContext(_appConfiguration.PostgreSQL);
             _repository = new DbRepository(_context);
             _secRepository = new UsersMealsRepository(_context);
+            _workoutRepository = new WorkoutRepository(_context);
             _context.Database.EnsureCreated();
         }
         #endregion
@@ -33,6 +35,7 @@ namespace dt.UnitTests
             _context.Dispose();
             _repository.Dispose();
             _secRepository.Dispose();
+            _workoutRepository.Dispose();
         }
         #endregion
 
@@ -75,6 +78,27 @@ namespace dt.UnitTests
             Assert.Equal(meal.Protein, result[0].Protein);
             Assert.Equal(meal.Fat, result[0].Fat);
             Assert.Equal(meal.Carbo, result[0].Carbo);
+        }
+
+        [Fact]
+        public async Task Should_Insert_And_Get_Workout()
+        {
+            // arrange
+            DateTime date = DateTime.UtcNow;
+            date = new DateTime(date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second, date.Kind);
+            Workout workout = new Workout(Guid.NewGuid(), "Bicki", date, date, "red");
+            List<Workout> result = null;
+
+            // act
+            await _workoutRepository.SaveWorkoutAsync(workout);
+            result = await _workoutRepository.GetWorkoutByIdAsync(workout.WorkoutId);
+
+            // assert
+            Assert.Equal(workout.WorkoutId, result[0].WorkoutId);
+            Assert.Equal(workout.Name, result[0].Name);
+            Assert.Equal(workout.StartDateTime, result[0].StartDateTime);
+            Assert.Equal(workout.EndDateTime, result[0].EndDateTime);
+            Assert.Equal(workout.Color, result[0].Color);
         }
 
         [Fact]

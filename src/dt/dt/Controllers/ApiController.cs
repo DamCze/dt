@@ -51,12 +51,13 @@ namespace dt.Controllers
 
             return Ok();
         }
-        //[HttpPost]
-        //[Route("/dt/api/v1")]
-        //public IActionResult PostString(string x)
-        //{
-
-        //    return Ok();
-        //}
     }
 }
+
+//[HttpPost]
+//[Route("/dt/api/v1")]
+//public IActionResult PostString(string x)
+//{
+
+//    return Ok();
+//}

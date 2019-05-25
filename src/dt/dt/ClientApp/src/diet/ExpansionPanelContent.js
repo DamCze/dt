@@ -7,33 +7,13 @@ import DietModal from "./DietModal";
 import DietTable from "./DietTable";
 import SaveModal from "./SaveModal";
 
-const styles = theme => ({
-  button: {
-    position: "relative",
-    left: "87%",
-    bottom: "0"
-  },
-  button2: {
-    position: "relative",
-    left: "85%",
-    bottom: "0"
-  },
-  divider: {
-    height: theme.spacing.unit * 2
-  }
-});
-
 class ExpansionPanelContent extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isVisible: false,
-      isSaveModalVisible: false,
-      dataFromExpansion: null,
-      dataToSave: null
-    };
-  }
+  state = {
+    isVisible: false,
+    isSaveModalVisible: false,
+    dataFromExpansion: null,
+    dataToSave: null
+  };
 
   openModal = () => {
     this.setState({
@@ -50,14 +30,14 @@ class ExpansionPanelContent extends Component {
   openSaveModal = () => {
     this.setState({
       isSaveModalVisible: true
-    })
-  }
+    });
+  };
 
   closeSaveModal = () => {
     this.setState({
       isSaveModalVisible: false
-    })
-  }
+    });
+  };
 
   callbackFromDiet = dataFromChildren => {
     this.setState({
@@ -68,31 +48,33 @@ class ExpansionPanelContent extends Component {
   callbackFromExpansion = dataFromChildren => {
     this.setState({
       dataToSave: dataFromChildren
-    })
-  }
+    });
+  };
 
   render() {
-    const { classes } = this.props;
     return (
-      <div>
+      <div style={styles.container}>
         <DietModal
           isVisible={this.state.isVisible}
           closeModal={this.closeModal}
           getDataToTable={this.callbackFromDiet}
         />
-        <SaveModal 
+        <SaveModal
           isOpen={this.state.isSaveModalVisible}
           closeModal={this.closeSaveModal}
           dataToSave={this.state.dataToSave}
         />
-        <DietTable dataToSave={this.callbackFromExpansion} dataToTable={this.state.dataFromExpansion} />
-        <div className={classes.divider} />
+        <DietTable
+          dataToSave={this.callbackFromExpansion}
+          dataToTable={this.state.dataFromExpansion}
+        />
+        <div className={styles.divider} />
         <Button
           variant="fab"
           color="default"
           aria-label="Add"
           onClick={() => this.openSaveModal()}
-          className={classes.button2}
+          className={styles.button}
         >
           <DoneIcon />
         </Button>
@@ -101,7 +83,7 @@ class ExpansionPanelContent extends Component {
           color="default"
           aria-label="Add"
           onClick={() => this.openModal()}
-          className={classes.button}
+          className={styles.button2}
         >
           <AddIcon />
         </Button>
@@ -109,5 +91,24 @@ class ExpansionPanelContent extends Component {
     );
   }
 }
+
+const styles = theme => ({
+  container: {
+    flex: 1
+  },
+  button: {
+    position: "relative",
+    left: "87%",
+    bottom: "0"
+  },
+  button2: {
+    position: "relative",
+    left: "85%",
+    bottom: "0"
+  },
+  divider: {
+    height: theme.spacing.unit * 2
+  }
+});
 
 export default withStyles(styles)(ExpansionPanelContent);
