@@ -10,30 +10,10 @@ import {
 } from "@material-ui/core";
 import ExpansionPanelContent from "./ExpansionPanelContent";
 
-const styles = theme => ({
-  root: {
-    width: "100%"
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(50),
-    flexBasis: "100%",
-    height: "10vh",
-    flexShrink: 0
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary
-  },
-});
-
 class Diet extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      expanded: null,
-    };
-  }
+  state = {
+    expanded: null
+  };
 
   handleChange = panel => (event, expanded) => {
     this.setState({
@@ -55,10 +35,9 @@ class Diet extends Component {
             <Typography className={classes.heading}>
               {t("breakfast")}
             </Typography>
-            {/* <Typography className={classes.secondaryHeading}>I am an expansion panel</Typography> */}
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography style={{width: "100%"}}>
+            <Typography style={styles.width}>
               <ExpansionPanelContent />
             </Typography>
           </ExpansionPanelDetails>
@@ -71,7 +50,7 @@ class Diet extends Component {
             <Typography className={classes.heading}>{t("brunch")}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography style={{width: "100%"}}>
+            <Typography style={styles.width}>
               <ExpansionPanelContent />
             </Typography>
           </ExpansionPanelDetails>
@@ -84,7 +63,7 @@ class Diet extends Component {
             <Typography className={classes.heading}>Lunch</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography style={{width: "100%"}}>
+            <Typography style={styles.width}>
               <ExpansionPanelContent />
             </Typography>
           </ExpansionPanelDetails>
@@ -97,7 +76,7 @@ class Diet extends Component {
             <Typography className={classes.heading}>{t("dinner")}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography style={{width: "100%"}}>
+            <Typography style={styles.width}>
               <ExpansionPanelContent />
             </Typography>
           </ExpansionPanelDetails>
@@ -110,7 +89,7 @@ class Diet extends Component {
             <Typography className={classes.heading}>{t("snack")}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography style={{width: "100%"}}>
+            <Typography style={styles.width}>
               <ExpansionPanelContent />
             </Typography>
           </ExpansionPanelDetails>
@@ -123,7 +102,7 @@ class Diet extends Component {
             <Typography className={classes.heading}>{t("supper")}</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography style={{width: "100%"}}>
+            <Typography style={styles.width}>
               <ExpansionPanelContent />
             </Typography>
           </ExpansionPanelDetails>
@@ -132,5 +111,25 @@ class Diet extends Component {
     );
   }
 }
+
+const styles = theme => ({
+  root: {
+    width: "100%"
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(50),
+    flexBasis: "100%",
+    height: "10vh",
+    flexShrink: 0
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary
+  },
+  width: {
+    width: "100%"
+  }
+});
+
 Diet = withStyles(styles)(Diet);
 export default translate("translations")(Diet);

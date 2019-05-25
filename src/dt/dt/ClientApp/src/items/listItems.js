@@ -13,7 +13,7 @@ function MainListItems(props) {
   const { t } = props;
   return (
     <div>
-      <Link to="/" style={{ textDecoration: "none" }}>
+      <Link to="/dashboard" style={{ textDecoration: "none" }}>
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon />
@@ -48,8 +48,8 @@ function MainListItems(props) {
         </ListItem>
       </Link>
 
-      {/* <ListItem button onClick={keycloak.logout}> */}
-      <ListItem button onClick={console.log("keycloak.logout")}>
+      <ListItem button onClick={keycloak.logout}>
+      {/* <ListItem button onClick={console.log("keycloak.logout")}> */}
         <ListItemIcon>
           <PowerSettingsNew />
         </ListItemIcon>

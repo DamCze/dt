@@ -33,6 +33,7 @@ class Plot extends Component {
   }
 
   componentDidMount() {
+
     this.setState({
       data: mock.map(m => {
         return {
@@ -45,9 +46,23 @@ class Plot extends Component {
       })
     });
 
-    mock.map(c => {
-      console.log(new Date(c.entityCreation).getTime());
-    });
+    // getPlotData().then(data => {
+    //   this.setState({
+    //     data: data.map(m => {
+    //       return {
+    //         kcal: m.kcal,
+    //         fat: m.fat,
+    //         protein: m.protein,
+    //         carbo: m.carbo,
+    //         date: new Date(m.entityCreation).getTime()
+    //       };
+    //     })
+    //   });
+    // })
+
+    // mock.map(c => {
+    //   console.log(new Date(c.entityCreation).getTime());
+    // });
   }
 
   render() {
