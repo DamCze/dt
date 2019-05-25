@@ -36,7 +36,6 @@ namespace dt.storage.infrastructure.Repository
                           join uM in _context.UsersMeals
                           on m.MealId equals uM.MealId
                           where uM.UserId == userId
-                          //select new Meal(m.MealId, m.Label, m.Kcal, m.Fat, m.Protein, m.Carbo) 
                           select new PlotData(uM.Value * m.Kcal, uM.Value * m.Fat, uM.Value * m.Protein, uM.Value * m.Carbo, uM.EntityCreation)
                           ).ToListAsync();
         }
@@ -60,3 +59,4 @@ namespace dt.storage.infrastructure.Repository
         #endregion
     }
 }
+//select new Meal(m.MealId, m.Label, m.Kcal, m.Fat, m.Protein, m.Carbo)

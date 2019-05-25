@@ -7,15 +7,16 @@ namespace dt.storage.infrastructure.Context
     public class MyContext : DbContext
     {
         private readonly string _connectionString;
-        public DbSet<User> Users { get; set; }
-        public DbSet<Meal> Meals { get; set; }
-        public DbSet<UsersMeal> UsersMeals { get; set; }
-
 
         public MyContext(DatabaseConfig databaseConfig)
         {
             _connectionString = databaseConfig.ConnectionString;
         }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Meal> Meals { get; set; }
+        public DbSet<UsersMeal> UsersMeals { get; set; }
+        public DbSet<Workout> Workouts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,6 +29,7 @@ namespace dt.storage.infrastructure.Context
             modelBuilder.Entity<User>().ToTable("user");
             modelBuilder.Entity<Meal>().ToTable("meal");
             modelBuilder.Entity<UsersMeal>().ToTable("usersMeal");
+            modelBuilder.Entity<Workout>().ToTable("workout");
             base.OnModelCreating(modelBuilder);
         }
     }
