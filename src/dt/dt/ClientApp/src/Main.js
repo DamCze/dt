@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import MainListItems from "./items/listItems";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import Diet from "./diet/Diet";
+import Diet from "./diet/view/Diet";
 import Report from "./report/Report";
 import Workout from "./workout/Workout";
 import Dashboard from "./dashboard/Dashboard";
