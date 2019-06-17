@@ -1,8 +1,13 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
 
-class DietChip extends React.Component {
+interface Props {
+  value: number;
+  classes: any;
+  getNameCallback: (value: Props["value"]) => any;
+}
+
+export class DietChip extends React.Component<Props> {
   handleClick = () => {
     return this.props.getNameCallback(this.props.value);
   }
@@ -21,16 +26,3 @@ class DietChip extends React.Component {
     );
   }
 }
-
-export default withStyles(styles)(DietChip);
-
-const styles = theme => ({
-  root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap"
-  },
-  chip: {
-    margin: theme.spacing.unit
-  }
-});

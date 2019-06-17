@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -9,13 +9,21 @@ import {
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
-import { translate } from "react-i18next";
+import { translate, WithNamespaces } from "react-i18next";
 import { DietModal } from "../../commons/Modal";
 
 const ADD = "add";
 const SAVE = "save";
 
-class ExpansionPanelContent extends Component {
+interface Props {
+  meal: string;
+}
+
+interface State {
+  isVisible: boolean;
+}
+
+class ExpansionPanelContent extends React.Component<Props & WithNamespaces, State> {
   state = {
     isVisible: false
   };

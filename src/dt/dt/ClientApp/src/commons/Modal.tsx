@@ -1,7 +1,12 @@
 import React from "react";
 import Modal from "@material-ui/core/Modal";
 
-export const DietModal = props => (
+interface Props {
+  open: boolean;
+  handleClose: () => void;
+}
+
+export const DietModal = (props: Props) => (
   <Modal open={props.open} onBackdropClick={props.handleClose}>
     <div style={styles.modal}>
       <button onClick={props.handleClose}>click</button>
@@ -20,5 +25,5 @@ const styles = {
     flex: 1,
     backgroundColor: "white",
     outline: "none"
-  }
+  } as React.CSSProperties
 };
