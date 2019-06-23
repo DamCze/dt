@@ -11,6 +11,8 @@ import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import { translate, WithNamespaces } from "react-i18next";
 import { DietModal } from "../../commons/Modal";
+import { DietList } from "./DietList";
+import { Buttons } from "../../commons/Buttons";
 
 const ADD = "add";
 const SAVE = "save";
@@ -23,7 +25,10 @@ interface State {
   isVisible: boolean;
 }
 
-class ExpansionPanelContent extends React.Component<Props & WithNamespaces, State> {
+class ExpansionPanelContent extends React.Component<
+  Props & WithNamespaces,
+  State
+> {
   state = {
     isVisible: false
   };
@@ -40,11 +45,13 @@ class ExpansionPanelContent extends React.Component<Props & WithNamespaces, Stat
           <Typography style={styles.heading}>{t(meal)}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails style={styles.details}>
-          {/* tutaj tabelka */}
           <DietModal
             open={this.state.isVisible}
             handleClose={this.setIsVisible}
-          />
+          >
+            <DietList />
+            <Buttons handleClose={this.setIsVisible}/>
+          </DietModal>
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>

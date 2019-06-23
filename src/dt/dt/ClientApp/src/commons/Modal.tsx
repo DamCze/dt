@@ -3,14 +3,13 @@ import Modal from "@material-ui/core/Modal";
 
 interface Props {
   open: boolean;
+  children: any;
   handleClose: () => void;
 }
 
 export const DietModal = (props: Props) => (
   <Modal open={props.open} onBackdropClick={props.handleClose}>
-    <div style={styles.modal}>
-      <button onClick={props.handleClose}>click</button>
-    </div>
+    <div style={styles.modal}>{props.children}</div>
   </Modal>
 );
 
@@ -22,7 +21,6 @@ const styles = {
     position: "absolute",
     width: window.innerWidth / 1.6,
     height: window.innerHeight / 1.6,
-    flex: 1,
     backgroundColor: "white",
     outline: "none"
   } as React.CSSProperties
