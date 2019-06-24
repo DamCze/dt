@@ -19,8 +19,7 @@ import {
   List,
   Typography,
   Divider,
-  IconButton,
-  Badge
+  IconButton
 } from "@material-ui/core";
 import Language from "./dictionary/Language";
 
