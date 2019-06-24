@@ -9,7 +9,7 @@ import {
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
-import { translate, WithNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import { DietModal } from "../../commons/Modal";
 import { DietList } from "./DietList";
 import { Buttons } from "../../commons/Buttons";
@@ -25,10 +25,7 @@ interface State {
   isVisible: boolean;
 }
 
-class ExpansionPanelContent extends React.Component<
-  Props & WithNamespaces,
-  State
-> {
+class ExpansionPanelContent extends React.Component<Props & any, State> {
   state = {
     isVisible: false
   };
@@ -50,7 +47,7 @@ class ExpansionPanelContent extends React.Component<
             handleClose={this.setIsVisible}
           >
             <DietList />
-            <Buttons handleClose={this.setIsVisible}/>
+            <Buttons handleClose={this.setIsVisible} />
           </DietModal>
         </ExpansionPanelDetails>
         <Divider />
@@ -79,4 +76,4 @@ const styles = {
   }
 };
 
-export default translate("translations")(ExpansionPanelContent);
+export default withTranslation("translations")(ExpansionPanelContent);

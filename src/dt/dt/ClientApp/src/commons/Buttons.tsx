@@ -1,20 +1,25 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   handleClose: () => void;
 }
 
-export const Buttons = (props: Props) => (
-  <div style={styles.container}>
-    <Button variant="outlined" color="primary" style={styles.button}>
-      Primary
-    </Button>
-    <Button variant="outlined" color="secondary" onClick={props.handleClose}>
-      Secondary
-    </Button>
-  </div>
-);
+export const Buttons = (props: Props) => {
+  const { t } = useTranslation();
+
+  return (
+    <div style={styles.container}>
+      <Button variant="outlined" color="primary" style={styles.button}>
+        {t("save")}
+      </Button>
+      <Button variant="outlined" color="secondary" onClick={props.handleClose}>
+        {t("cancel")}
+      </Button>
+    </div>
+  );
+};
 
 const styles = {
   container: {

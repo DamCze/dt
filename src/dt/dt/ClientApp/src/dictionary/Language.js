@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { translate } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import { IconButton } from "@material-ui/core";
 import LanguageIcon from "@material-ui/icons/Language";
 
@@ -29,4 +29,4 @@ class Language extends Component {
   }
 }
 
-export default translate("translations")(Language);
+export default withTranslation("translations")(Language);

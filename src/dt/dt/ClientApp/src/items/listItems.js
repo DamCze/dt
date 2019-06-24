@@ -7,10 +7,11 @@ import BarChartIcon from "@material-ui/icons/BarChart";
 import { PowerSettingsNew } from "@material-ui/icons";
 import { keycloak } from "../index.js";
 import { BrowserRouter as Route, Link } from "react-router-dom";
-import { translate } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
-function MainListItems(props) {
-  const { t } = props;
+export const MainListItems = props => {
+  const { t } = useTranslation();
+  
   return (
     <div>
       <Link to="/dashboard" style={{ textDecoration: "none" }}>
@@ -57,6 +58,4 @@ function MainListItems(props) {
       </ListItem>
     </div>
   );
-}
-
-export default translate("translations")(MainListItems);
+};

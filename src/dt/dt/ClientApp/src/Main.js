@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import classNames from "classnames";
-import { translate } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import { withStyles } from "@material-ui/core/styles";
 import { styles } from "./styles/MainStyles.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import MainListItems from "./items/listItems";
+import { MainListItems } from "./items/listItems";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Diet from "./diet/view/Diet";
@@ -124,4 +124,4 @@ class Main extends Component {
 }
 
 Main = withStyles(styles)(Main);
-export default translate("translations")(Main);
+export default withTranslation("translations")(Main);
