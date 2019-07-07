@@ -13,6 +13,7 @@ import { withTranslation } from "react-i18next";
 import { DietModal } from "../../commons/Modal";
 import { DietList } from "./DietList";
 import { Buttons } from "../../commons/Buttons";
+import { DietTableContainer } from "./DietTableContainer";
 
 const ADD = "add";
 const SAVE = "save";
@@ -23,15 +24,21 @@ interface Props {
 
 interface State {
   isVisible: boolean;
+  food: any;
 }
 
 class ExpansionPanelContent extends React.Component<Props & any, State> {
   state = {
-    isVisible: false
+    isVisible: false,
+    food: null
   };
 
   setIsVisible = () => {
     this.setState(state => ({ isVisible: !state.isVisible }));
+  };
+
+  setFood = food => {
+    this.setState({ food: food });
   };
 
   render() {
@@ -46,16 +53,17 @@ class ExpansionPanelContent extends React.Component<Props & any, State> {
             open={this.state.isVisible}
             handleClose={this.setIsVisible}
           >
-            <DietList />
+            <DietList foodCallback={this.setFood} />
             <Buttons handleClose={this.setIsVisible} />
           </DietModal>
+          <DietTableContainer food={this.state.food} />
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button size="small">{t(ADD)}</Button>
-          <Button size="small" color="primary" onClick={this.setIsVisible}>
-            {t(SAVE)}
+          <Button size="small" onClick={this.setIsVisible}>
+            {t(ADD)}
           </Button>
+          <Button size="small">{t(SAVE)}</Button>
         </ExpansionPanelActions>
       </ExpansionPanel>
     );

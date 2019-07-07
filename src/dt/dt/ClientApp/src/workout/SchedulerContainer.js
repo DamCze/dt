@@ -229,7 +229,6 @@ export default class Agenda extends Component {
 
   addNewEvent(items, newItems) {
     this.setState({ showModal: false, selected: [], items: items });
-    console.log(newItems);
     // saveWorkout(newItems);
     this._closeModal();
   }

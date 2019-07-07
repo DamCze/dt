@@ -108,13 +108,18 @@ const components = {
   ValueContainer
 };
 
-export const DietList = () => {
+interface Props {
+  foodCallback: (food: any) => void;
+}
+
+export const DietList = (props: Props) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [multi, setMulti] = React.useState(null);
+  const [food, setFood] = React.useState(null);
 
-  const handleChangeMulti = value => {
-    setMulti(value);
+  const handleChangeFood = value => {
+    setFood(value);
+    props.foodCallback(value);
   };
 
   const selectStyles = {
@@ -144,8 +149,8 @@ export const DietList = () => {
           }}
           options={suggestions}
           components={components}
-          value={multi}
-          onChange={handleChangeMulti}
+          value={food}
+          onChange={handleChangeFood}
           isMulti
         />
       </NoSsr>

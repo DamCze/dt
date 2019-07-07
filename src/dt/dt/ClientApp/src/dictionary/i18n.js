@@ -19,8 +19,7 @@ i18n.use(LanguageDetector).init({
         supper: "Supper",
         empty: "Empty",
         add: "Add",
-        save: "Save",
-        cancel: "Cancel",
+        close: "Close",
         food: "Food"
       }
     },
@@ -39,8 +38,7 @@ i18n.use(LanguageDetector).init({
         supper: "Kolacja",
         empty: "Brak",
         add: "Dodaj",
-        save: "Zapisz",
-        cancel: "Anuluj",
+        close: "Zamknij",
         food: "Jedzenie"
       }
     }

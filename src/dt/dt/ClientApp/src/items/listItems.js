@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 export const MainListItems = props => {
   const { t } = useTranslation();
-  
+
   return (
     <div>
       <Link to="/dashboard" style={{ textDecoration: "none" }}>
@@ -50,7 +50,6 @@ export const MainListItems = props => {
       </Link>
 
       <ListItem button onClick={keycloak.logout}>
-      {/* <ListItem button onClick={console.log("keycloak.logout")}> */}
         <ListItemIcon>
           <PowerSettingsNew />
         </ListItemIcon>

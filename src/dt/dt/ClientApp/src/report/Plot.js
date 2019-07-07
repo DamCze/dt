@@ -60,9 +60,6 @@ class Plot extends Component {
     //   });
     // })
 
-    // mock.map(c => {
-    //   console.log(new Date(c.entityCreation).getTime());
-    // });
   }
 
   render() {

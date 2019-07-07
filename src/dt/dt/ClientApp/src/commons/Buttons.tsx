@@ -11,11 +11,8 @@ export const Buttons = (props: Props) => {
 
   return (
     <div style={styles.container}>
-      <Button variant="outlined" color="primary" style={styles.button}>
-        {t("save")}
-      </Button>
-      <Button variant="outlined" color="secondary" onClick={props.handleClose}>
-        {t("cancel")}
+      <Button variant="outlined" color="primary" onClick={props.handleClose}>
+        {t("close")}
       </Button>
     </div>
   );

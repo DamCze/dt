@@ -19,11 +19,7 @@ export async function saveDiet(diet) {
   myHeaders.set("Authorization", "Bearer " + keycloak.token);
   myHeaders.set("Content-Type", "application/x-www-form-urlencoded");
 
-  axios.post(URI, diet, { headers: myHeaders})
-    .then(result => {
-      console.log(result);
-      console.log(result.data);
-    })
+  axios.post(URI, diet, { headers: myHeaders});
 }
 
 export async function buildFetchReqOpts(data) {

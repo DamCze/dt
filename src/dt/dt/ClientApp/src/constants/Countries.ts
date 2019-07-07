@@ -33,7 +33,7 @@ export const suggestions = [
   { label: "Brazil" },
   { label: "British Indian Ocean Territory" },
   { label: "Brunei Darussalam" }
-].map(suggestion => ({
-  value: suggestion.label,
+].map((suggestion, index) => ({
+  value: index,
   label: suggestion.label
 }));
