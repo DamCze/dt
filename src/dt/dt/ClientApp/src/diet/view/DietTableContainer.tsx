@@ -1,12 +1,12 @@
 import React from "react";
 import { DietTable } from "./DietTable";
-import { getComputedNutritionalValues } from "../services/DietTableService";
+import { getComputedNutritionalValues } from "../services/DietService";
 
 type action = "INCREMENT" | "DECREMENT";
 
-// TODO: uzupełnić typ
 interface Props {
   food: any;
+  setComputedFood: (food: any) => void;
 }
 
 interface State {
@@ -37,6 +37,8 @@ export class DietTableContainer extends React.Component<Props, State> {
     if (this.props.food !== prevProps.food) {
       this.setState({
         food: getInitialState(this.props.food)
+      }, () => {
+        this.props.setComputedFood(this.state.food);
       });
     }
   }
@@ -45,6 +47,8 @@ export class DietTableContainer extends React.Component<Props, State> {
     this.setState({
       action: "INCREMENT",
       selectedRow: label
+    }, () => {
+      this.props.setComputedFood(this.state.food);
     });
   };
 
@@ -52,6 +56,8 @@ export class DietTableContainer extends React.Component<Props, State> {
     this.setState({
       action: "DECREMENT",
       selectedRow: label
+    }, () => {
+      this.props.setComputedFood(this.state.food);
     });
   };
 
@@ -60,7 +66,9 @@ export class DietTableContainer extends React.Component<Props, State> {
       <DietTable
         add={this.addHandler}
         subtract={this.subtractHandler}
-        food={getComputedNutritionalValues(this.props.food || [], { ...this.state })}
+        food={getComputedNutritionalValues(this.props.food || [], {
+          ...this.state
+        })}
       />
     );
   }

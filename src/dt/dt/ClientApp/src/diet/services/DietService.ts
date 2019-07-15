@@ -11,3 +11,11 @@ export const getComputedNutritionalValues = (
   }
   return source;
 };
+
+export const saveDiet = (food: any) => {
+  const data = food && mapFromLocalToRemote(food);
+  // TODO: zapisywanie
+};
+
+const mapFromLocalToRemote = (food: any) =>
+  food.map(obj => ({ value: obj.value, label: obj.label }));
