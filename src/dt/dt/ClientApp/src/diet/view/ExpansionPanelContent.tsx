@@ -26,14 +26,14 @@ interface Props {
 interface State {
   isVisible: boolean;
   food: any;
-  computedFood: any;
 }
 
 class ExpansionPanelContent extends React.Component<Props & any, State> {
+  _computedFood = null;
+
   state = {
     isVisible: false,
-    food: null,
-    computedFood: null
+    food: null
   };
 
   setIsVisible = () => {
@@ -45,7 +45,7 @@ class ExpansionPanelContent extends React.Component<Props & any, State> {
   };
 
   setComputedFood = computedFood => {
-    this.setState({ computedFood: computedFood });
+    this._computedFood = computedFood;
   };
 
   render() {
@@ -75,7 +75,7 @@ class ExpansionPanelContent extends React.Component<Props & any, State> {
           </Button>
           <Button
             size="small"
-            onClick={() => saveDiet(this.state.computedFood)}
+            onClick={() => saveDiet(this._computedFood)}
           >
             {t(SAVE)}
           </Button>
