@@ -11,6 +11,6 @@ export interface Food {
 
 export type FoodRawArray = Array<FoodRaw>;
 
-interface FoodRaw extends Food {
+export interface FoodRaw extends Food {
   counter: number;
 }

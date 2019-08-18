@@ -14,7 +14,7 @@ import { DietModal } from "../../commons/Modal";
 import { DietList } from "./DietList";
 import { Buttons } from "../../commons/Buttons";
 import { DietTableContainer } from "./DietTableContainer";
-import { saveDiet } from "../services/DietService";
+import { addDiet } from "../services/DietService";
 import { FoodArray, FoodRawArray } from "../../model/Interfaces";
 
 const ADD = "add";
@@ -76,7 +76,7 @@ class ExpansionPanelContent extends React.Component<Props & any, State> {
           </Button>
           <Button
             size="small"
-            onClick={() => saveDiet(this._computedFood)}
+            onClick={() => addDiet(this._computedFood)}
           >
             {t(SAVE)}
           </Button>

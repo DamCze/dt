@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace dt.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("/dt/api/v1")]
     public class ApiController : Controller
     {
@@ -54,10 +54,3 @@ namespace dt.Controllers
     }
 }
 
-//[HttpPost]
-//[Route("/dt/api/v1")]
-//public IActionResult PostString(string x)
-//{
-
-//    return Ok();
-//}

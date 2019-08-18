@@ -1,4 +1,8 @@
-import { FoodArray, Food, FoodRawArray } from "../../model/Interfaces";
+import jwt_decode from "jwt-decode";
+import { keycloak } from "../../index";
+import { saveMeals } from "../../api/DietApi";
+import { FoodArrayDto } from "../../api/dto/DietDto";
+import { FoodArray, FoodRaw, FoodRawArray } from "../../model/Interfaces";
 
 export const getComputedNutritionalValues = (
   source: FoodArray,
@@ -17,19 +21,16 @@ export const getComputedNutritionalValues = (
   return source;
 };
 
-export const saveDiet = (food: FoodRawArray) => {
+export const addDiet = (food: FoodRawArray) => {
   const data = mapFromLocalToRemote(food);
-  // TODO: zapisywanie
+  saveMeals(data);
 };
 
-const mapFromLocalToRemote = (food: FoodRawArray): FoodArray =>
-  food.map((obj: Food) => ({
-    carbo: obj.carbo,
-    label: obj.label,
-    fat: obj.fat,
-    kcal: obj.kcal,
+const mapFromLocalToRemote = (food: FoodRawArray): FoodArrayDto =>
+  food.map((obj: FoodRaw) => ({
     mealId: obj.mealId,
-    protein: obj.protein
+    userId: jwt_decode(keycloak.token).sub,
+    value: obj.counter
   }));
 
 const checkIfPositive = (counter: number) => counter > 0;

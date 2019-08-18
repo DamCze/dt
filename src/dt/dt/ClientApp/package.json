@@ -13,6 +13,7 @@
     "bootstrap": "=3.3.7",
     "i18next": "=11.10.0",
     "i18next-browser-languagedetector": "=2.2.3",
+    "jwt-decode": "=2.2.0",
     "keycloak-js": "=4.5.0",
     "moment": "=2.22.2",
     "react": "=16.8.0",
