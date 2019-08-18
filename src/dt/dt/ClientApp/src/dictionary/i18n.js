@@ -19,9 +19,15 @@ i18n.use(LanguageDetector).init({
         supper: "Supper",
         empty: "Empty",
         add: "Add",
+        subtract: "Subtract",
         save: "Save",
         close: "Close",
-        food: "Food"
+        food: "Food",
+        meal: "Meal (100g serving)",
+        carbo: "Carbo",
+        fat: "Fat",
+        kcal: "Kcal",
+        protein: "Protein"
       }
     },
     pl: {
@@ -39,9 +45,15 @@ i18n.use(LanguageDetector).init({
         supper: "Kolacja",
         empty: "Brak",
         add: "Dodaj",
+        subtract: "Odejmij",
         save: "Zapisz",
         close: "Zamknij",
-        food: "Jedzenie"
+        food: "Jedzenie",
+        meal: "Posiłek (100g)",
+        carbo: "Węglowodany",
+        fat: "Tłuszcz",
+        kcal: "Kcal",
+        protein: "Białko"
       }
     }
   },

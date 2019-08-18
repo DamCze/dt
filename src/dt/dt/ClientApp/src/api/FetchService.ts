@@ -1,29 +1,26 @@
 import { updateKeycloakToken, keycloak } from "../index.js";
-// TODO metoda sprawdzajaca, czy wysłanie się powiodło,
-// w przeciwnym razie rzuca wyjątek.
 
-export const GetJson = async (url: string) => {
-  const headers = await authorization();
+export const GetJson = async (url: string): Promise<Response> => {
+  await updateKeycloakToken();
   return await fetch(url, {
     method: "GET",
-    headers: headers
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${keycloak.token}`
+    }
   });
 };
 
 export const PostJson = async (url: string, data: any) => {
-  const headers = await authorization();
+  await updateKeycloakToken();
   await fetch(url, {
     method: "POST",
-    headers: headers,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${keycloak.token}`
+    },
     body: JSON.stringify(data)
   });
-};
-
-const authorization = async () => {
-  await updateKeycloakToken();
-  let headers = new Headers();
-  headers.set("Authorization", `Bearer ${keycloak.token}`);
-  headers.set("Content-Type", "application/x-www-form-urlencoded");
-  headers.set("Accept", "application/json");
-  return headers;
 };

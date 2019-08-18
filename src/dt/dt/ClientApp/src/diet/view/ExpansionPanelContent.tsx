@@ -15,6 +15,7 @@ import { DietList } from "./DietList";
 import { Buttons } from "../../commons/Buttons";
 import { DietTableContainer } from "./DietTableContainer";
 import { saveDiet } from "../services/DietService";
+import { FoodArray, FoodRawArray } from "../../model/Interfaces";
 
 const ADD = "add";
 const SAVE = "save";
@@ -25,27 +26,27 @@ interface Props {
 
 interface State {
   isVisible: boolean;
-  food: any;
+  food: FoodArray;
 }
 
 class ExpansionPanelContent extends React.Component<Props & any, State> {
-  _computedFood = null;
+  _computedFood: FoodRawArray = [];
 
   state = {
     isVisible: false,
-    food: null
+    food: []
   };
 
   setIsVisible = () => {
     this.setState(prevState => ({ isVisible: !prevState.isVisible }));
   };
 
-  setFood = food => {
-    this.setState({ food: food });
+  setFood = (value: FoodArray) => {
+    this.setState({ food: value });
   };
 
-  setComputedFood = computedFood => {
-    this._computedFood = computedFood;
+  setComputedFood = (value: FoodRawArray) => {
+    this._computedFood = value;
   };
 
   render() {

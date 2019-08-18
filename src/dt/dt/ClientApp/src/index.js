@@ -64,13 +64,4 @@ keycloak.init({ onLoad: "login-required" }).success(authenticated => {
   }
 });
 
-// ReactDOM.render(
-//   <BrowserRouter basename={baseUrl}>
-//     <I18nextProvider i18n={i18n}>
-//       <App />
-//     </I18nextProvider>
-//   </BrowserRouter>,
-//   rootElement
-// );
-
 export { keycloak };

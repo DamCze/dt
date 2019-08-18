@@ -1,18 +1,19 @@
 import React from "react";
 import { DietTable } from "./DietTable";
 import { getComputedNutritionalValues } from "../services/DietService";
+import { FoodArray, FoodRawArray } from "../../model/Interfaces";
 
 type action = "INCREMENT" | "DECREMENT";
 
 interface Props {
-  food: any;
-  setComputedFood: (food: any) => void;
+  food: FoodArray;
+  setComputedFood: (food: FoodRawArray) => void;
 }
 
 interface State {
   action: action | null;
   selectedRow: string;
-  food: Props["food"];
+  foodRaw: FoodRawArray;
 }
 
 const getInitialState = (food: Props["food"]) => {
@@ -30,15 +31,15 @@ export class DietTableContainer extends React.Component<Props, State> {
   state = {
     action: null,
     selectedRow: "",
-    food: []
+    foodRaw: []
   };
 
   componentDidUpdate(prevProps: Props) {
     if (this.props.food !== prevProps.food) {
       this.setState({
-        food: getInitialState(this.props.food)
+        foodRaw: getInitialState(this.props.food)
       }, () => {
-        this.props.setComputedFood(this.state.food);
+        this.props.setComputedFood(this.state.foodRaw);
       });
     }
   }
@@ -48,7 +49,7 @@ export class DietTableContainer extends React.Component<Props, State> {
       action: "INCREMENT",
       selectedRow: label
     }, () => {
-      this.props.setComputedFood(this.state.food);
+      this.props.setComputedFood(this.state.foodRaw);
     });
   };
 
@@ -57,7 +58,7 @@ export class DietTableContainer extends React.Component<Props, State> {
       action: "DECREMENT",
       selectedRow: label
     }, () => {
-      this.props.setComputedFood(this.state.food);
+      this.props.setComputedFood(this.state.foodRaw);
     });
   };
 

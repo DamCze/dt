@@ -8,7 +8,8 @@ import Paper from "@material-ui/core/Paper";
 import Chip from "@material-ui/core/Chip";
 import MenuItem from "@material-ui/core/MenuItem";
 import CancelIcon from "@material-ui/icons/Cancel";
-import { suggestions } from "../../constants/Countries";
+import { getMeals } from "../../api/DietApi";
+import { FoodArray } from "../../model/Interfaces";
 
 const NoOptionsMessage = props => (
   <Typography
@@ -109,13 +110,24 @@ const components = {
 };
 
 interface Props {
-  foodCallback: (food: any) => void;
+  foodCallback: (food: FoodArray) => void;
 }
 
 export const DietList = (props: Props) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [food, setFood] = React.useState(null);
+  const [food, setFood] = React.useState([]);
+  const [allFood, setAllFood] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const response = await getMeals();
+      const responseJson = await response.json();
+      setAllFood(responseJson);
+    };
+
+    fetchData();
+  }, []);
 
   const handleChangeFood = value => {
     setFood(value);
@@ -147,7 +159,7 @@ export const DietList = (props: Props) => {
             },
             placeholder: ""
           }}
-          options={suggestions}
+          options={allFood}
           components={components}
           value={food}
           onChange={handleChangeFood}
