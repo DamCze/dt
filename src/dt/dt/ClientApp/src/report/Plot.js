@@ -9,7 +9,7 @@ import YAxis from "recharts/lib/cartesian/YAxis";
 import CartesianGrid from "recharts/lib/cartesian/CartesianGrid";
 import Tooltip from "recharts/lib/component/Tooltip";
 import Legend from "recharts/lib/component/Legend";
-import { mock } from "../model/mock";
+import { mock } from "../constants/PlotData";
 import { getPlotData } from "../api/api.report";
 import moment from "moment";
 
@@ -60,9 +60,6 @@ class Plot extends Component {
     //   });
     // })
 
-    // mock.map(c => {
-    //   console.log(new Date(c.entityCreation).getTime());
-    // });
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { RadialBarChart, RadialBar, Legend } from "recharts";
-import { mock } from "../model/mock";
+import { mock } from "../constants/PlotData";
+import { getPlotData } from "../api/api.report";
 import { getPlotData } from "../api/api.report";
 import moment from "moment";
 

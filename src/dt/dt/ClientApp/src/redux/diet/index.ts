@@ -1,0 +1,1 @@
+export { addFood } from "./action";

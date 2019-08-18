@@ -9,10 +9,7 @@ export async function saveWorkout(workout) {
   myHeaders.set("Authorization", "Bearer " + keycloak.token);
   myHeaders.set("Content-Type", "application/x-www-form-urlencoded");
 
-  axios.post(URI, workout, { headers: myHeaders }).then(result => {
-    console.log(result);
-    console.log(result.data);
-  });
+  axios.post(URI, workout, { headers: myHeaders });
 }
 
 export async function buildFetchReqOpts(data) {

@@ -5,6 +5,8 @@ import App from "./App";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./dictionary/i18n";
 import Keycloak from "keycloak-js";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 export function logout() {
   const logoutOptions = { redirectUri: window.location.origin };
@@ -48,25 +50,18 @@ const keycloak = Keycloak("../../keycloak.json");
 keycloak.init({ onLoad: "login-required" }).success(authenticated => {
   if (authenticated) {
     ReactDOM.render(
-      <BrowserRouter basename={baseUrl}>
-        <I18nextProvider i18n={i18n}>
-          <View />
-        </I18nextProvider>
-      </BrowserRouter>,
+      <Provider store={store}>
+        <BrowserRouter basename={baseUrl}>
+          <I18nextProvider i18n={i18n}>
+            <View />
+          </I18nextProvider>
+        </BrowserRouter>
+      </Provider>,
       rootElement
     );
   } else {
     logout();
   }
 });
-
-// ReactDOM.render(
-//   <BrowserRouter basename={baseUrl}>
-//     <I18nextProvider i18n={i18n}>
-//       <App />
-//     </I18nextProvider>
-//   </BrowserRouter>,
-//   rootElement
-// );
 
 export { keycloak };
