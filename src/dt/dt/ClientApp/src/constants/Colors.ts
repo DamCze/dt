@@ -6,5 +6,9 @@ export default {
   WHITE: "#ffffff",
   SEANCE: "#9c27b0",
   AQUA: "#00e5ff",
-  VERMILION: "#ff3d00"
+  VERMILION: "#ff3d00",
+  SAFFRON: "#F2B134",
+  CINNABAR: "#eb553b",
+  SHAKESPEARE: "#469fd5",
+  ROUGE: "#aa3b7b"
 };

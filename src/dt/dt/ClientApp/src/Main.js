@@ -9,7 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Diet from "./diet/view/Diet";
 import Report from "./report/view/Report";
-import Workout from "./workout/Workout";
+import { Workout } from "./workout/Workout";
 import Dashboard from "./dashboard/Dashboard";
 import {
   CssBaseline,

@@ -8,7 +8,6 @@ interface Props {
 
 export const Buttons = (props: Props) => {
   const { t } = useTranslation();
-
   return (
     <div style={styles.container}>
       <Button variant="outlined" color="primary" onClick={props.handleClose}>
