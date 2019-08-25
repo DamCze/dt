@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { RadialBarChart, RadialBar, Legend } from "recharts";
-import { getPlotData } from "../api/ReportApi";
-import { mapForCirclePlot } from "./services/PlotDataService";
-import Colors from "../constants/Colors";
-import { PlotCircleData } from "../model/Interfaces";
+import { getPlotData } from "../../api/ReportApi";
+import { mapForCirclePlot } from "../services/PlotDataService";
+import Colors from "../../constants/Colors";
+import { PlotCircleData } from "../../model/Interfaces";
 
 interface State {
   dataPlot: PlotCircleData;
