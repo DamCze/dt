@@ -1,11 +1,11 @@
-import "../../node_modules/react-agenda/build/styles.css";
-import "../../node_modules/react-datetime/css/react-datetime.css";
+import "../../../node_modules/react-agenda/build/styles.css";
+import "../../../node_modules/react-datetime/css/react-datetime.css";
 
 import React from "react";
 import { ReactAgenda, guid } from "react-agenda";
-import { AgendaModal } from "./view/AgendaModal";
-import { ControlButtons } from "./view/ControlButtons";
-import Colors from "../constants/Colors";
+import { AgendaModal } from "./AgendaModal";
+import { ControlButtons } from "./ControlButtons";
+import Colors from "../../constants/Colors";
 import moment from "moment";
 
 const itemColors = {

@@ -1,5 +1,5 @@
 import React from "react";
-import SchedulerContainer from "./SchedulerContainer";
+import SchedulerContainer from "./view/SchedulerContainer";
 
 export const Workout = () => (
   <>

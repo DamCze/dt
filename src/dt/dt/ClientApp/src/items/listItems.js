@@ -1,6 +1,5 @@
 import React from "react";
 import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import DashboardIcon from "@material-ui/icons/Dashboard";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import RestaurantMenuIcon from "@material-ui/icons/RestaurantMenu";
 import BarChartIcon from "@material-ui/icons/BarChart";
@@ -14,15 +13,6 @@ export const MainListItems = props => {
 
   return (
     <div>
-      <Link to="/dashboard" style={{ textDecoration: "none" }}>
-        <ListItem button>
-          <ListItemIcon>
-            <DashboardIcon />
-          </ListItemIcon>
-          <ListItemText primary={t("main_page")} />
-        </ListItem>
-      </Link>
-
       <Link to="/workout" style={{ textDecoration: "none" }}>
         <ListItem button>
           <ListItemIcon>

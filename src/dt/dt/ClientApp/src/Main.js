@@ -10,7 +10,6 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Diet from "./diet/view/Diet";
 import Report from "./report/view/Report";
 import { Workout } from "./workout/Workout";
-import Dashboard from "./dashboard/Dashboard";
 import {
   CssBaseline,
   Drawer,
@@ -111,7 +110,6 @@ class Main extends Component {
               <Typography variant="h4" gutterBottom component="h2">
                 <Route path="/report" component={Report} />
                 <Route path="/workout" component={Workout} />
-                <Route path="/dashboard" component={Dashboard} />
               </Typography>
               <div className={classes.tableContainer} />
             </main>
